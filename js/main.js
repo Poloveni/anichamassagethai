@@ -94,7 +94,32 @@
   });
 
   /* ─────────────────────────────────────────────────
-   * 6. PARALLAX — hero (fond défile plus lentement)
+   * 6. SCROLL INDICATOR — disparaît au scroll
+   * ───────────────────────────────────────────────── */
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    const onScrollIndicator = () => {
+      scrollIndicator.classList.toggle('is-hidden', window.scrollY > 100);
+    };
+    window.addEventListener('scroll', onScrollIndicator, { passive: true });
+    onScrollIndicator();
+  }
+
+  /* ─────────────────────────────────────────────────
+   * 7. FAB RÉSERVER — masqué quand menu mobile ouvert
+   * ───────────────────────────────────────────────── */
+  const fab = document.querySelector('.fab-reserve');
+  if (fab && toggle && nav) {
+    const syncFab = () => {
+      fab.classList.toggle('fab-hidden', nav.dataset.open === 'true');
+    };
+    const fabObserver = new MutationObserver(syncFab);
+    fabObserver.observe(nav, { attributes: true, attributeFilter: ['data-open'] });
+    syncFab();
+  }
+
+  /* ─────────────────────────────────────────────────
+   * 8. PARALLAX — hero (fond défile plus lentement)
    * ───────────────────────────────────────────────── */
   /* Vidéo hero : pause si reduced-motion */
   const heroVideo = document.querySelector('.hero__video');

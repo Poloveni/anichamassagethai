@@ -127,6 +127,79 @@
       </div>
     </section>
 
+    <!-- FORMULAIRE DE CONTACT -->
+    <section class="contact-form-section" aria-labelledby="form-title">
+      <div class="container">
+        <div class="contact-form">
+          <div class="contact-form__header">
+            <span class="eyebrow">Demande de rendez-vous</span>
+            <h2 id="form-title">Envoyez votre message</h2>
+            <p>Anicha vous répond dans les 24 h. Pour les rendez-vous urgents, appelez directement le <a href="tel:+33650672080">06 50 67 20 80</a>.</p>
+          </div>
+
+          <form action="mailto:anichamassagethai@gmail.com" method="post" enctype="text/plain" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label for="nom">Nom *</label>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom" required autocomplete="family-name">
+              </div>
+              <div class="form-group">
+                <label for="telephone">Téléphone *</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="06 XX XX XX XX" required autocomplete="tel">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="votre@email.fr" autocomplete="email">
+              </div>
+              <div class="form-group form-group--full">
+                <label for="soin">Soin souhaité</label>
+                <select id="soin" name="soin">
+                  <option value="">— Choisir un soin —</option>
+                  <optgroup label="Soins individuels">
+                    <option>Massage thaï traditionnel (1 h)</option>
+                    <option>Massage thaï traditionnel (1 h 30)</option>
+                    <option>Massage aux huiles chaudes (1 h)</option>
+                    <option>Massage aux huiles essentielles (1 h)</option>
+                    <option>Réflexologie plantaire &amp; massage crânien (1 h)</option>
+                  </optgroup>
+                  <optgroup label="Formules">
+                    <option>Thaï Découverte (45 min – 50 €)</option>
+                    <option>Thaï Orchidée (1 h 30 – 80 €) ★ La plus choisie</option>
+                    <option>Thaï Jasmine (2 h – 115 €)</option>
+                    <option>Thaï Mali (2 h – 115 €)</option>
+                    <option>Thaï Lotus (2 h 30 – 145 €)</option>
+                    <option>Thaï Rose (2 h 30 – 145 €)</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="disponibilites">Disponibilités souhaitées</label>
+                <input type="text" id="disponibilites" name="disponibilites" placeholder="Ex : mardi ou jeudi après-midi, semaine du 20…">
+              </div>
+              <div class="form-group form-group--full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Questions, informations complémentaires, contre-indications à signaler…"></textarea>
+              </div>
+            </div>
+
+            <div class="form-submit">
+              <p class="form-note">* Champs obligatoires · Vos données ne sont pas revendues.</p>
+              <button type="submit" class="btn btn--primary">
+                Envoyer ma demande
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="margin-left:6px;" aria-hidden="true">
+                  <path d="m5 12 14 0M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- COMMENT VENIR -->
     <section class="section section--alt" aria-labelledby="acces-title">
       <div class="container">
@@ -205,6 +278,14 @@
       </div>
     </div>
   </footer>
+
+  <!-- FAB mobile -->
+  <a href="contact.html" class="fab-reserve" aria-label="Prendre rendez-vous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Réserver
+  </a>
 
   <script src="js/main.js" defer></script>
 </body>

@@ -127,12 +127,22 @@
           <a href="massages.html" class="btn btn--ghost-light">Découvrir les soins</a>
         </div>
       </div>
+
+      <!-- Scroll indicator -->
+      <a href="#reassurance" class="scroll-indicator" aria-label="Défiler vers le bas">
+        <div class="scroll-indicator__ring" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>Découvrir</span>
+      </a>
     </section>
 
     <!-- ====================================================
          RÉASSURANCE
     ===================================================== -->
-    <section class="reassurance" aria-label="Nos garanties">
+    <section class="reassurance" id="reassurance" aria-label="Nos garanties">
       <div class="container reassurance__grid">
         <div class="reassurance__item">
           <svg class="reassurance__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -555,4 +565,24 @@
       </div>
 
       <div class="site-footer__bottom">
-        <span>© 2026 Anicha Espace Bien-Être · Tous dr
+        <span>© <span data-current-year>2026</span> Anicha Espace Bien-Être · Tous droits réservés</span>
+        <div class="site-footer__bottom-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="mentions-legales.html#cgv">CGV</a>
+          <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FAB mobile -->
+  <a href="contact.html" class="fab-reserve" aria-label="Prendre rendez-vous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Réserver
+  </a>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

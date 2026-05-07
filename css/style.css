@@ -300,11 +300,23 @@ p { max-width: 65ch; }
 
 .logo {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xs);
   text-decoration: none;
   color: var(--color-text);
   line-height: 1;
+}
+.logo__img {
+  height: 52px;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+}
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .logo__name {
   font-family: var(--font-serif);
@@ -806,12 +818,26 @@ p { max-width: 65ch; }
   max-width: 32ch;
 }
 .site-footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
   font-family: var(--font-serif);
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   color: #F2E9D9;
   text-decoration: none;
+}
+.site-footer__logo .logo__img {
+  height: 44px;
+  width: auto;
+  /* logo noir → blanc sur fond sombre */
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+.site-footer__logo-text {
+  display: flex;
+  flex-direction: column;
 }
 .site-footer__logo span {
   display: block;

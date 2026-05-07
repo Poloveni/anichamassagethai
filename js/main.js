@@ -6,11 +6,14 @@
 (function () {
   'use strict';
 
-  /* ----------------------------------------------------
+  const motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch  = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  /* ─────────────────────────────────────────────────
    * 1. Menu mobile (burger)
-   * ---------------------------------------------------- */
+   * ───────────────────────────────────────────────── */
   const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.nav');
+  const nav    = document.querySelector('.nav');
 
   if (toggle && nav) {
     toggle.addEventListener('click', () => {
@@ -18,11 +21,9 @@
       nav.dataset.open = String(!isOpen);
       toggle.setAttribute('aria-expanded', String(!isOpen));
       toggle.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
-      // Empêche le scroll du body quand le menu est ouvert
       document.body.style.overflow = isOpen ? '' : 'hidden';
     });
 
-    // Ferme automatiquement le menu quand on clique un lien
     nav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         nav.dataset.open = 'false';
@@ -32,63 +33,54 @@
       });
     });
 
-    // Ferme avec la touche Échap
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.dataset.open === 'true') {
-        toggle.click();
-      }
+      if (e.key === 'Escape' && nav.dataset.open === 'true') toggle.click();
     });
   }
 
-  /* ----------------------------------------------------
-   * 2. Header : ombre douce dès qu'on scrolle
-   * ---------------------------------------------------- */
+  /* ─────────────────────────────────────────────────
+   * 2. Header : ombre au scroll
+   * ───────────────────────────────────────────────── */
   const header = document.querySelector('.site-header');
   if (header) {
-    const onScroll = () => {
-      header.classList.toggle('is-scrolled', window.scrollY > 4);
-    };
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 4);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* ----------------------------------------------------
-   * 3. Animation d'apparition des sections au scroll
-   *    (légère, optionnelle, respecte prefers-reduced-motion)
-   * ---------------------------------------------------- */
-  const motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ─────────────────────────────────────────────────
+   * 3. Animation d'apparition au scroll (IntersectionObserver)
+   * ───────────────────────────────────────────────── */
   if (motionOk && 'IntersectionObserver' in window) {
-    const cards = document.querySelectorAll('.card, .formule-card, .testimonial');
-    cards.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 600ms ease, transform 600ms ease';
+    const targets = document.querySelectorAll('.card, .formule-card, .testimonial, .reassurance__item');
+    targets.forEach((el, i) => {
+      el.style.opacity  = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity 550ms ease ${i % 4 * 80}ms, transform 550ms ease ${i % 4 * 80}ms`;
     });
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, i * 60);
+          entry.target.style.opacity   = '1';
+          entry.target.style.transform = 'translateY(0)';
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    cards.forEach((el) => observer.observe(el));
+    targets.forEach((el) => observer.observe(el));
   }
 
-  /* ----------------------------------------------------
-   * 4. Année courante dans le footer si présente
-   * ---------------------------------------------------- */
+  /* ─────────────────────────────────────────────────
+   * 4. Année courante dans le footer
+   * ───────────────────────────────────────────────── */
   const yearEl = document.querySelector('[data-current-year]');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  /* ----------------------------------------------------
-   * 5. Resize : si on repasse en desktop, on referme proprement
-   * ---------------------------------------------------- */
+  /* ─────────────────────────────────────────────────
+   * 5. Resize : fermeture menu en desktop
+   * ───────────────────────────────────────────────── */
   let resizeRaf;
   window.addEventListener('resize', () => {
     cancelAnimationFrame(resizeRaf);
@@ -100,5 +92,78 @@
       }
     });
   });
+
+  /* ─────────────────────────────────────────────────
+   * 6. PARALLAX — hero (fond défile plus lentement)
+   * ───────────────────────────────────────────────── */
+  if (motionOk) {
+    const heroBg = document.querySelector('.hero__bg');
+    if (heroBg) {
+      let rafId;
+      const updateHeroParallax = () => {
+        rafId = requestAnimationFrame(() => {
+          heroBg.style.transform = `translateY(${window.scrollY * 0.38}px)`;
+        });
+      };
+      window.addEventListener('scroll', updateHeroParallax, { passive: true });
+      updateHeroParallax(); // init
+    }
+
+    /* Parallax léger sur les images de section (philosophy, gift) */
+    const parallaxImages = document.querySelectorAll('[data-parallax]');
+    if (parallaxImages.length) {
+      const updateSectionParallax = () => {
+        requestAnimationFrame(() => {
+          parallaxImages.forEach((el) => {
+            const rect  = el.getBoundingClientRect();
+            const speed = parseFloat(el.dataset.parallax) || 0.18;
+            const mid   = window.innerHeight / 2;
+            const offset = (rect.top + rect.height / 2 - mid) * speed;
+            el.style.transform = `translateY(${offset}px) scale(1.08)`;
+          });
+        });
+      };
+      window.addEventListener('scroll', updateSectionParallax, { passive: true });
+      updateSectionParallax();
+    }
+  }
+
+  /* ─────────────────────────────────────────────────
+   * 7. EFFET TILT 3D — cartes (souris uniquement)
+   *    Fait tourner la carte sur les axes X/Y en
+   *    fonction de la position du curseur, avec un
+   *    retour en douceur à l'état neutre.
+   * ───────────────────────────────────────────────── */
+  if (motionOk && !isTouch) {
+    const tiltEls = document.querySelectorAll('.card, .formule-card');
+
+    tiltEls.forEach((el) => {
+      let animFrame;
+
+      el.addEventListener('mousemove', (e) => {
+        cancelAnimationFrame(animFrame);
+        animFrame = requestAnimationFrame(() => {
+          const rect = el.getBoundingClientRect();
+          const cx   = rect.left + rect.width  / 2;
+          const cy   = rect.top  + rect.height / 2;
+          const dx   = (e.clientX - cx) / (rect.width  / 2); // -1 → 1
+          const dy   = (e.clientY - cy) / (rect.height / 2); // -1 → 1
+
+          const rotY =  dx * 9;   // rotation gauche-droite
+          const rotX = -dy * 7;   // rotation haut-bas
+
+          el.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
+          el.style.transform  =
+            `perspective(900px) rotateY(${rotY}deg) rotateX(${rotX}deg) translateZ(10px)`;
+        });
+      });
+
+      el.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(animFrame);
+        el.style.transition = 'transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.55s ease';
+        el.style.transform  = '';
+      });
+    });
+  }
 
 })();

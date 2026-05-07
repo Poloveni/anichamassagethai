@@ -122,7 +122,20 @@
    * 8. PARALLAX — hero (fond défile plus lentement)
    * ───────────────────────────────────────────────── */
   const heroVideo = document.querySelector('.hero__video');
-  if (heroVideo && !motionOk) heroVideo.pause();
+  if (heroVideo) {
+    if (!motionOk) {
+      heroVideo.pause();
+    } else {
+      // Force autoplay explicite (certains navigateurs ignorent l'attribut HTML)
+      heroVideo.muted = true;
+      const playPromise = heroVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Bloqué par le navigateur : le poster sert de fallback
+        });
+      }
+    }
+  }
 
   if (motionOk) {
     const heroBg = document.querySelector('.hero__bg');

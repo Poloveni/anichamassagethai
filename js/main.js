@@ -125,9 +125,10 @@
    * ───────────────────────────────────────────────── */
   const heroVideo = document.querySelector('.hero__video');
   if (heroVideo) {
-    if (!motionOk) {
-      heroVideo.removeAttribute('autoplay');
-    } else {
+    // La vidéo hero est un fond ambiant, pas une animation décorative :
+    // on la joue toujours (muette), même si l'utilisateur préfère moins d'animations.
+    // Les effets parallax, tilt et transitions CSS restent désactivés avec motionOk=false.
+    {
       heroVideo.muted      = true;
       heroVideo.playsInline = true;
 

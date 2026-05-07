@@ -110,7 +110,8 @@ body {
   overflow-x: hidden;
 }
 
-img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+img, picture, video, canvas { display: block; max-width: 100%; height: auto; }
+svg { display: block; overflow: visible; }
 input, button, textarea, select { font: inherit; color: inherit; }
 
 a {
@@ -1137,7 +1138,7 @@ p { max-width: 65ch; }
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
 }
-.service-item svg { width: 32px; height: 32px; color: var(--color-primary); margin-bottom: var(--space-sm); }
+.service-item svg { width: 32px; height: 32px; flex-shrink: 0; color: var(--color-primary); margin-bottom: var(--space-sm); }
 .service-item h3 { font-size: var(--fs-md); margin: 0 0 var(--space-xs); }
 .service-item p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0; }
 .tarifs-note {

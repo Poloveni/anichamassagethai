@@ -119,21 +119,50 @@
   }
 
   /* ─────────────────────────────────────────────────
-   * 8. PARALLAX — hero (fond défile plus lentement)
+   * 8. VIDÉO HERO — lecture automatique robuste
+   *    Tente play() dès que possible ; si Chrome bloque
+   *    (autoplay policy), déverrouille au premier geste.
    * ───────────────────────────────────────────────── */
   const heroVideo = document.querySelector('.hero__video');
   if (heroVideo) {
     if (!motionOk) {
-      heroVideo.pause();
+      heroVideo.removeAttribute('autoplay');
     } else {
-      // Force autoplay explicite (certains navigateurs ignorent l'attribut HTML)
-      heroVideo.muted = true;
-      const playPromise = heroVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Bloqué par le navigateur : le poster sert de fallback
-        });
+      heroVideo.muted      = true;
+      heroVideo.playsInline = true;
+
+      let videoPlaying = false;
+
+      const tryPlay = () => {
+        if (videoPlaying) return;
+        const p = heroVideo.play();
+        if (p !== undefined) {
+          p.then(() => { videoPlaying = true; }).catch(() => {
+            /* Autoplay bloqué → déverrouille au premier geste utilisateur */
+            const unlock = () => {
+              if (videoPlaying) return;
+              heroVideo.play().then(() => { videoPlaying = true; }).catch(() => {});
+              document.removeEventListener('scroll',     unlock, true);
+              document.removeEventListener('click',      unlock, true);
+              document.removeEventListener('touchstart', unlock, true);
+              document.removeEventListener('keydown',    unlock, true);
+            };
+            document.addEventListener('scroll',     unlock, { once: true, passive: true, capture: true });
+            document.addEventListener('click',      unlock, { once: true, capture: true });
+            document.addEventListener('touchstart', unlock, { once: true, passive: true, capture: true });
+            document.addEventListener('keydown',    unlock, { once: true, capture: true });
+          });
+        }
+      };
+
+      /* Tenter immédiatement si données disponibles, sinon attendre */
+      if (heroVideo.readyState >= 2) {
+        tryPlay();
+      } else {
+        heroVideo.addEventListener('loadeddata', tryPlay, { once: true });
       }
+      /* Double filet : canplaythrough garantit assez de données */
+      heroVideo.addEventListener('canplaythrough', tryPlay, { once: true });
     }
   }
 

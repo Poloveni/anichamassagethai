@@ -96,6 +96,10 @@
   /* ─────────────────────────────────────────────────
    * 6. PARALLAX — hero (fond défile plus lentement)
    * ───────────────────────────────────────────────── */
+  /* Vidéo hero : pause si reduced-motion */
+  const heroVideo = document.querySelector('.hero__video');
+  if (heroVideo && !motionOk) heroVideo.pause();
+
   if (motionOk) {
     const heroBg = document.querySelector('.hero__bg');
     if (heroBg) {

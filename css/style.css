@@ -421,7 +421,7 @@ p { max-width: 65ch; }
   display: block;
 }
 
-/* Reduced motion : pause vidéo, affiche la première image */
+/* Reduced motion : pause vidéo */
 @media (prefers-reduced-motion: reduce) {
   .hero__video { animation-play-state: paused; }
 }

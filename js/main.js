@@ -237,4 +237,19 @@
     });
   }
 
+  /* ─────────────────────────────────────────────────
+   * 8. FORMULAIRE — message de confirmation
+   *    Affiché si l'URL contient ?envoye=1 (FormSubmit
+   *    redirige ici après soumission réussie).
+   * ───────────────────────────────────────────────── */
+  if (new URLSearchParams(window.location.search).get('envoye') === '1') {
+    const success = document.getElementById('form-success');
+    const form    = document.querySelector('.contact-form form');
+    if (success) {
+      success.hidden = false;
+      success.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'center' });
+    }
+    if (form) form.hidden = true;
+  }
+
 })();

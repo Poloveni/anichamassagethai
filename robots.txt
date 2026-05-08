@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Pas d'exclusion : tout le site est indexable
+
+Sitemap: https://anichamassagethai-nimes.com/sitemap.xml

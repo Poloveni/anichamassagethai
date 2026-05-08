@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page introuvable – Anicha Espace Bien-Être · Nîmes</title>
+  <meta name="description" content="Cette page n'existe pas. Retour à l'accueil d'Anicha Espace Bien-Être à Nîmes." />
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+
+  <!-- Redirection automatique des anciennes URLs Wix vers les nouvelles -->
+  <script>
+    (function () {
+      var path = window.location.pathname;
+      var redirects = {
+        '/team-4':                   '/massages.html',
+        '/team-4/':                  '/massages.html',
+        '/about-5':                  '/a-propos.html',
+        '/about-5/':                 '/a-propos.html',
+        '/about-6':                  '/tarifs.html',
+        '/about-6/':                 '/tarifs.html',
+        '/about-2':                  '/',
+        '/about-2/':                 '/',
+        '/galerie-photos':           '/avis-galerie.html',
+        '/galerie-photos/':          '/avis-galerie.html',
+        '/contact':                  '/contact.html',
+        '/contact/':                 '/contact.html',
+        '/con':                      '/mentions-legales.html#cgv',
+        '/con/':                     '/mentions-legales.html#cgv',
+        '/down-for-maintenance':     '/mentions-legales.html',
+        '/down-for-maintenance/':    '/mentions-legales.html'
+      };
+      // Recherche tolérante (sans le préfixe / si GitHub Pages /anichamassagethai/team-4)
+      var matched = null;
+      for (var key in redirects) {
+        if (path === key || path.endsWith(key)) { matched = redirects[key]; break; }
+      }
+      if (matched) {
+        window.location.replace(matched);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/" class="logo" aria-label="Anicha – Accueil">
+        <picture>
+          <source srcset="img/logo.avif" type="image/avif">
+          <img src="img/logo.png" alt="" class="logo__img" aria-hidden="true" width="74" height="52">
+        </picture>
+        <span class="logo__text">
+          <span class="logo__name">ANICHA</span>
+          <span class="logo__tagline">Espace bien-être</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul class="nav__list" id="primary-menu">
+          <li><a href="/" class="nav__link">Accueil</a></li>
+          <li><a href="massages.html" class="nav__link">Massages</a></li>
+          <li><a href="tarifs.html" class="nav__link">Tarifs</a></li>
+          <li><a href="a-propos.html" class="nav__link">À propos</a></li>
+          <li><a href="avis-galerie.html" class="nav__link">Avis</a></li>
+          <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+        <div class="nav__cta"><a href="contact.html" class="btn btn--primary btn--small">Réserver</a></div>
+      </nav>
+      <button class="menu-toggle" type="button" aria-controls="primary-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span class="menu-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow">Erreur 404</span>
+        <h1>Cette page est introuvable</h1>
+        <p>La page que vous cherchez n'existe pas ou a été déplacée. Vous pouvez revenir à l'accueil ou utiliser le menu pour continuer la visite.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="text-align:center; max-width: 60ch;">
+        <p style="margin: 0 auto var(--space-lg);">Si vous arrivez ici depuis un ancien lien, le site a été refait — vous serez automatiquement redirigé vers la bonne page.</p>
+        <div style="display:flex; gap:var(--space-sm); justify-content:center; flex-wrap:wrap;">
+          <a href="/" class="btn btn--primary">Retour à l'accueil</a>
+          <a href="contact.html" class="btn btn--ghost">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__bottom" style="border-top:0; padding-top:0;">
+        <span>© <span data-current-year>2026</span> Anicha Espace Bien-Être · Tous droits réservés</span>
+        <div class="site-footer__bottom-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="mentions-legales.html#cgv">CGV</a>
+          <a href="mentions-legales.html#confidentialite">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

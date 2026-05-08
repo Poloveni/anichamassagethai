@@ -770,34 +770,7 @@ p { max-width: 65ch; }
 }
 
 /* ============================================================
-   10. BON CADEAU
-   ============================================================ */
-.gift {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: var(--space-xl);
-  background-color: var(--color-bg-alt);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-.gift__image {
-  border-radius: var(--radius);
-  aspect-ratio: 5 / 4;
-  background-size: cover;
-  background-position: center;
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  will-change: transform;
-}
-.gift__content { padding: var(--space-md) 0; }
-.gift__content h2 { margin-bottom: var(--space-md); }
-.gift__content p  { margin-bottom: var(--space-lg); color: var(--color-muted); }
-
-/* ============================================================
-   11. PHILOSOPHIE
+   10. PHILOSOPHIE
    ============================================================ */
 .philosophy {
   display: grid;
@@ -1941,3 +1914,58 @@ h2 { letter-spacing: -0.02em; }
   .form-submit { flex-direction: column; align-items: stretch; }
   .form-submit .btn { text-align: center; }
 }
+
+/* Bandeau de confirmation après envoi du formulaire */
+.form-success {
+  background-color: #ECF6EE;
+  border: 1px solid #B7DBC1;
+  border-left: 4px solid var(--color-accent, #7E8C76);
+  border-radius: var(--radius);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  color: #2C5A3A;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+}
+.form-success strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: #1F4429;
+  margin-bottom: var(--space-2xs);
+}
+.form-success a { color: #1F4429; text-decoration: underline; }
+
+/* ============================================================
+   16. FAB WHATSAPP
+   ============================================================ */
+.fab-stack {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  z-index: 90;
+}
+.fab-stack .fab-reserve { position: static; right: auto; bottom: auto; }
+.fab-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background-color: #25D366;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+.fab-whatsapp:hover {
+  transform: translateY(-2px) scale(1.05);
+  background-color: #128C7E;
+  color: #FFFFFF;
+}
+.fab-whatsapp svg { width: 28px; height: 28px; }
+.fab-whatsapp.fab-hidden { transform: translateY(120%); pointer-events: none; }

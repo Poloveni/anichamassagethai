@@ -50,4 +50,3 @@ Le site est statique : il peut être servi par n'importe quel hébergeur (Netlif
 - Photos professionnelles du salon (shooting à programmer).
 - Module de réservation (Calendly, Planity ou équivalent).
 - Connexion API Google Places pour les avis en direct.
-- Mentions légales et CGV à finaliser avec les coordonnées exactes (SIRET).

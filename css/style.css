@@ -23,24 +23,24 @@
    1. TOKENS
    ============================================================ */
 :root {
-  /* Palette Vert / Nature — bambou, sauge, jade */
-  --color-bg:           #F5F8F3;   /* blanc légèrement verdâtre */
-  --color-bg-alt:       #E8F0E4;   /* vert pâle doux */
-  --color-bg-surface:   #D6E4D0;   /* surface vert sauge clair */
+  /* Palette Jade & Teck doré — temple thaï, spa de luxe */
+  --color-bg:           #F7F3EA;   /* crème lumineuse — soie naturelle */
+  --color-bg-alt:       #EDE8DA;   /* crème dorée — lin chaud */
+  --color-bg-surface:   #E0D9C8;   /* surface crème profonde */
   --color-bg-card:      #FFFFFF;   /* cartes blanches */
-  --color-bg-dark:      #162416;   /* vert très sombre (footer) */
+  --color-bg-dark:      #0D1E22;   /* jade nuit — profondeur du temple */
 
-  --color-primary:      #3A6647;   /* vert jade profond */
-  --color-primary-dark: #274D33;
-  --color-primary-light:#5D9470;   /* vert jade vif */
+  --color-primary:      #C49A35;   /* or teck — boutons, prix, soulignements */
+  --color-primary-dark: #9A7820;   /* or sombre — hover */
+  --color-primary-light:#D4B055;   /* or lumineux — hero, reflets */
 
-  --color-secondary:    #7A9E80;   /* sauge moyen */
-  --color-accent:       #8B7355;   /* bronze doré pour contrastes chauds */
+  --color-secondary:    #1A4A4F;   /* jade profond — structure */
+  --color-accent:       #2A7A6F;   /* jade vif — détails décoratifs */
 
-  --color-text:         #162416;   /* vert très sombre */
-  --color-muted:        #4A6B52;   /* vert médium lisible */
-  --color-border:       #C4D9BC;
-  --color-border-mid:   #9DC49E;   /* vert bambou */
+  --color-text:         #0D1E22;   /* quasi-noir jade */
+  --color-muted:        #3A5A60;   /* jade moyen lisible */
+  --color-border:       #D4CEBC;   /* crème bordure */
+  --color-border-mid:   #BFB8A8;   /* crème bordure plus marquée */
   --color-white:        #FFFFFF;
 
   /* Typographie */
@@ -78,10 +78,10 @@
   --radius-full: 9999px;
 
   /* Effets */
-  --shadow-sm:   0 1px 4px rgba(22,36,22,.07);
-  --shadow:      0 8px 32px rgba(22,36,22,.11);
-  --shadow-lg:   0 24px 72px rgba(22,36,22,.16);
-  --shadow-gold: 0 0 0 2px rgba(58,102,71,.25), 0 8px 40px rgba(22,36,22,.14);
+  --shadow-sm:   0 1px 4px rgba(13,30,34,.07);
+  --shadow:      0 8px 32px rgba(13,30,34,.11);
+  --shadow-lg:   0 24px 72px rgba(13,30,34,.18);
+  --shadow-gold: 0 0 0 2px rgba(196,154,53,.30), 0 8px 40px rgba(13,30,34,.15);
 
   --transition:      200ms ease;
   --transition-slow: 400ms ease;
@@ -196,8 +196,8 @@ p { max-width: 65ch; }
   background-color: var(--color-bg-dark);
   color: #EDE0CC;
 }
-.section--dark h2   { color: #E8F2EA; }
-.section--dark .lead { color: #7A9E80; }
+.section--dark h2   { color: #F0EAD8; }
+.section--dark .lead { color: #8AA89A; }
 
 .section-header {
   text-align: center;
@@ -234,18 +234,19 @@ p { max-width: 65ch; }
   white-space: nowrap;
 }
 
-/* Primaire : or + texte blanc */
+/* Primaire : or teck + texte jade sombre */
 .btn--primary {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-bg-dark);
   border-color: var(--color-primary);
+  font-weight: 700;
 }
 .btn--primary:hover {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
   color: var(--color-white);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(58,102,71,.35);
+  box-shadow: 0 8px 28px rgba(196,154,53,.42);
 }
 
 /* Ghost sur fond clair : bordure sombre, texte sombre */
@@ -280,14 +281,14 @@ p { max-width: 65ch; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(245,248,243,.93);
+  background-color: rgba(247,243,234,.96);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--color-border);
   transition: box-shadow var(--transition), border-color var(--transition);
 }
 .site-header.is-scrolled {
-  box-shadow: 0 4px 32px rgba(22,36,22,.10);
+  box-shadow: 0 4px 32px rgba(13,30,34,.10);
   border-bottom-color: var(--color-border-mid);
 }
 
@@ -434,9 +435,9 @@ p { max-width: 65ch; }
   position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(
     105deg,
-    rgba(18,28,18,.92) 0%,
-    rgba(18,28,18,.68) 48%,
-    rgba(18,28,18,.30) 100%
+    rgba(13,30,34,.90) 0%,
+    rgba(13,30,34,.62) 50%,
+    rgba(13,30,34,.18) 100%
   );
 }
 
@@ -529,7 +530,7 @@ p { max-width: 65ch; }
 }
 .card:hover {
   box-shadow: var(--shadow-gold);
-  border-color: rgba(58,102,71,.3);
+  border-color: rgba(196,154,53,.35);
 }
 
 .card__image {
@@ -562,12 +563,12 @@ p { max-width: 65ch; }
   font-size: 4.5rem;
   font-weight: 400;
   line-height: 1;
-  color: rgba(58,102,71,.07);
+  color: rgba(196,154,53,.09);
   pointer-events: none;
   user-select: none;
   transition: color var(--transition-slow);
 }
-.card:hover .card__number { color: rgba(58,102,71,.14); }
+.card:hover .card__number { color: rgba(196,154,53,.18); }
 
 .card__name-thai {
   font-family: var(--font-serif);
@@ -609,14 +610,14 @@ p { max-width: 65ch; }
 }
 .formule-card:hover {
   box-shadow: var(--shadow-gold);
-  border-color: rgba(58,102,71,.35);
+  border-color: rgba(196,154,53,.40);
 }
 
-/* Featured : fond sable doré */
+/* Featured : fond or nacré */
 .formule-card--featured {
-  background: linear-gradient(145deg, #FDF6E8 0%, #F8EDCF 100%);
-  border-color: rgba(58,102,71,.4);
-  box-shadow: 0 0 0 1px rgba(58,102,71,.15);
+  background: linear-gradient(145deg, #FEF8E8 0%, #F9EDCC 100%);
+  border-color: rgba(196,154,53,.45);
+  box-shadow: 0 0 0 1px rgba(196,154,53,.20);
 }
 .formule-card--featured .formule-card__name  { color: var(--color-text); }
 .formule-card--featured .formule-card__list  { color: var(--color-muted); }
@@ -883,7 +884,7 @@ p { max-width: 65ch; }
    ============================================================ */
 .site-footer {
   background-color: var(--color-bg-dark);
-  color: #7A9E80;
+  color: #A09878;
   padding: var(--space-2xl) 0 var(--space-md);
   margin-top: var(--space-2xl);
 }
@@ -894,7 +895,7 @@ p { max-width: 65ch; }
   margin-bottom: var(--space-xl);
 }
 .site-footer h4 {
-  color: #E8F2EA;
+  color: #F0EAD8;
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   text-transform: uppercase;
@@ -903,10 +904,10 @@ p { max-width: 65ch; }
   margin-bottom: var(--space-md);
 }
 .site-footer ul { display: flex; flex-direction: column; gap: var(--space-2xs); }
-.site-footer a { color: #7A9E80; }
+.site-footer a { color: #A09878; }
 .site-footer a:hover { color: var(--color-primary-light); }
 .site-footer__brand p {
-  color: rgba(122,158,128,.75);
+  color: rgba(160,152,120,.80);
   font-size: var(--fs-sm);
   margin-top: var(--space-sm);
   max-width: 32ch;
@@ -919,7 +920,7 @@ p { max-width: 65ch; }
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0.18em;
-  color: #E8F2EA;
+  color: #F0EAD8;
   text-decoration: none;
 }
 .site-footer__logo .logo__img {
@@ -943,7 +944,7 @@ p { max-width: 65ch; }
   margin-top: 4px;
 }
 .site-footer__bottom {
-  border-top: 1px solid rgba(122,158,128,.2);
+  border-top: 1px solid rgba(196,154,53,.18);
   padding-top: var(--space-md);
   display: flex;
   justify-content: space-between;
@@ -951,7 +952,7 @@ p { max-width: 65ch; }
   flex-wrap: wrap;
   gap: var(--space-sm);
   font-size: var(--fs-xs);
-  color: rgba(122,158,128,.55);
+  color: rgba(160,152,120,.60);
 }
 .site-footer__bottom-links { display: flex; gap: var(--space-md); flex-wrap: wrap; }
 
@@ -960,8 +961,8 @@ p { max-width: 65ch; }
   display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(122,158,128,.3);
-  color: #7A9E80;
+  border: 1px solid rgba(196,154,53,.25);
+  color: #A09878;
   transition: all var(--transition);
 }
 .socials a:hover {
@@ -1296,7 +1297,7 @@ p { max-width: 65ch; }
 }
 .gift-formule-item:last-child { border-bottom: none; }
 .gift-formule-item:hover { background-color: var(--color-bg-alt); }
-.gift-formule-item--highlight { background-color: #E8F2E8; }
+.gift-formule-item--highlight { background-color: #FEF8E8; }
 .gift-formule-item__name { font-size: var(--fs-sm); }
 .gift-formule-item__detail { font-size: var(--fs-xs); color: var(--color-muted); }
 .gift-formule-item__price {
@@ -1630,7 +1631,7 @@ h2 { letter-spacing: -0.02em; }
   top: -48px;
   left: 0; right: 0;
   height: 50px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 50' preserveAspectRatio='none'%3E%3Cpath fill='%23E8F0E4' d='M0,20 C320,50 760,0 1440,28 L1440,50 L0,50 Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 50' preserveAspectRatio='none'%3E%3Cpath fill='%23EDE8DA' d='M0,20 C320,50 760,0 1440,28 L1440,50 L0,50 Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
   pointer-events: none;
   z-index: 0;
 }
@@ -1652,7 +1653,7 @@ h2 { letter-spacing: -0.02em; }
   padding: 14px var(--space-lg);
   border-radius: var(--radius-full);
   text-decoration: none;
-  box-shadow: 0 4px 20px rgba(58, 102, 71, 0.45);
+  box-shadow: 0 4px 20px rgba(196, 154, 53, 0.50);
   align-items: center;
   gap: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
@@ -1661,7 +1662,7 @@ h2 { letter-spacing: -0.02em; }
 .fab-reserve:hover {
   background-color: var(--color-primary-dark);
   transform: translateY(-3px) !important;
-  box-shadow: 0 8px 28px rgba(58, 102, 71, 0.55);
+  box-shadow: 0 8px 28px rgba(196, 154, 53, 0.60);
 }
 .fab-reserve.fab-hidden {
   opacity: 0;
@@ -1743,7 +1744,7 @@ h2 { letter-spacing: -0.02em; }
 .gallery-item__caption {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(22, 36, 22, 0.55) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(13, 30, 34, 0.65) 0%, transparent 55%);
   opacity: 0;
   transition: opacity 0.35s;
   display: flex; align-items: flex-end;
@@ -1822,7 +1823,7 @@ h2 { letter-spacing: -0.02em; }
    ============================================================ */
 .formule-card--featured {
   border: 2px solid var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(58, 102, 71, 0.1), var(--shadow-lg);
+  box-shadow: 0 0 0 4px rgba(196, 154, 53, 0.12), var(--shadow-lg);
   position: relative;
 }
 .formule-badge {

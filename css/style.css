@@ -11,12 +11,12 @@
      7.  Hero
      8.  Réassurance
      9.  Cartes (soins, formules, témoignages)
-     10. Bon cadeau
-     11. Philosophie
-     12. Contact rapide
-     13. Footer
-     14. Pages secondaires
-     15. Utilitaires & responsive
+     10. Philosophie
+     11. Contact rapide
+     12. Footer
+     13. Pages secondaires
+     14. Utilitaires & responsive
+     15. Formulaire & FAB WhatsApp
    =========================================================== */
 
 /* ============================================================
@@ -1199,104 +1199,7 @@ p { max-width: 65ch; }
 .timeline-item__content p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0; }
 
 /* ============================================================
-   14e. PAGE BON CADEAU
-   ============================================================ */
-.gift-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  margin-top: var(--space-xl);
-}
-.gift-option {
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-}
-.gift-option__icon {
-  width: 48px; height: 48px;
-  background-color: var(--color-bg-alt);
-  border-radius: var(--radius-full);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: var(--space-md);
-}
-.gift-option__icon svg { width: 22px; height: 22px; color: var(--color-primary); }
-.gift-option h3 { font-size: var(--fs-md); margin: 0 0 var(--space-sm); }
-.gift-option p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0 0 var(--space-md); }
-.gift-option__steps { display: flex; flex-direction: column; gap: var(--space-sm); }
-.gift-step {
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: var(--space-sm);
-  align-items: start;
-}
-.gift-step__num {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.gift-step p { font-size: var(--fs-sm); color: var(--color-muted); margin: 0; }
-.gift-option__note {
-  font-size: var(--fs-xs);
-  color: var(--color-muted);
-  background-color: var(--color-bg-alt);
-  border-left: 3px solid var(--color-primary-light);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  margin-top: var(--space-md);
-}
-.gift-formules {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-top: var(--space-xl);
-}
-.gift-formule-item {
-  display: grid;
-  grid-template-columns: 1fr 80px 80px;
-  gap: var(--space-md);
-  align-items: center;
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-bg-card);
-  transition: background-color var(--transition);
-}
-.gift-formule-item:last-child { border-bottom: none; }
-.gift-formule-item:hover { background-color: var(--color-bg-alt); }
-.gift-formule-item--highlight { background-color: #FEF8E8; }
-.gift-formule-item__name { font-size: var(--fs-sm); }
-.gift-formule-item__detail { font-size: var(--fs-xs); color: var(--color-muted); }
-.gift-formule-item__price {
-  font-family: var(--font-serif);
-  font-size: var(--fs-md);
-  font-weight: 600;
-  color: var(--color-primary);
-  text-align: right;
-}
-.conditions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-lg);
-  margin-top: var(--space-xl);
-}
-.condition-item {
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-}
-.condition-item h3 { font-size: var(--fs-md); color: var(--color-primary); margin: 0 0 var(--space-xs); }
-.condition-item p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0; }
-
-/* ============================================================
-   14f. PAGE CONTACT
+   14e. PAGE CONTACT
    ============================================================ */
 .contact-page__grid {
   display: grid;
@@ -1452,11 +1355,9 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .reassurance__item { flex-direction: row; align-items: center; gap: var(--space-md); }
   .reassurance__icon { margin-bottom: 0; }
 
-  .gift,
   .philosophy,
   .contact-quick { grid-template-columns: 1fr; gap: var(--space-lg); }
-  .gift { padding: var(--space-lg); }
-  .gift__image, .philosophy__image, .contact-quick__map { aspect-ratio: 16 / 9; }
+  .philosophy__image, .contact-quick__map { aspect-ratio: 16 / 9; }
 
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
 
@@ -1469,8 +1370,6 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .services-grid { grid-template-columns: 1fr; }
   .about-inner { grid-template-columns: 1fr; gap: var(--space-xl); }
   .about-image { aspect-ratio: 16 / 9; }
-  .gift-options { grid-template-columns: 1fr; }
-  .conditions-grid { grid-template-columns: 1fr; }
   .contact-page__grid { grid-template-columns: 1fr; }
   .contact-page__map { height: 380px; position: static; }
   .acces-grid { grid-template-columns: 1fr; }
@@ -1531,7 +1430,6 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .timeline { padding-left: var(--space-lg); }
   .timeline-item { grid-template-columns: 60px 1fr; gap: var(--space-sm); }
   .testimonials-grid--full { grid-template-columns: 1fr; }
-  .gift-formule-item { grid-template-columns: 1fr 60px 70px; }
 }
 
 /* ----- Reduced motion ----- */

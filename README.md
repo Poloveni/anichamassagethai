@@ -17,7 +17,6 @@ Site vitrine d'Anicha Espace Bien-Être, institut de massage thaï traditionnel 
 ├── massages.html           # Liste détaillée des soins
 ├── tarifs.html             # Tarifs et formules
 ├── a-propos.html           # Anicha, son histoire, l'institut
-├── bon-cadeau.html         # Achat de bons cadeaux
 ├── avis-galerie.html       # Avis Google + galerie photos
 ├── contact.html            # Contact, accès, horaires
 ├── mentions-legales.html   # Mentions légales obligatoires
@@ -50,6 +49,5 @@ Le site est statique : il peut être servi par n'importe quel hébergeur (Netlif
 
 - Photos professionnelles du salon (shooting à programmer).
 - Module de réservation (Calendly, Planity ou équivalent).
-- Module de bon cadeau avec paiement Stripe.
 - Connexion API Google Places pour les avis en direct.
 - Mentions légales et CGV à finaliser avec les coordonnées exactes (SIRET).

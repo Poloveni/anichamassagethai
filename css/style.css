@@ -916,6 +916,15 @@ p { max-width: 65ch; }
   color: var(--color-primary-light);
   margin-top: 4px;
 }
+.site-footer__notice {
+  text-align: center;
+  font-size: var(--fs-xs);
+  font-style: italic;
+  color: rgba(160,152,120,.55);
+  margin: 0 auto var(--space-md);
+  max-width: 60ch;
+  letter-spacing: 0.02em;
+}
 .site-footer__bottom {
   border-top: 1px solid rgba(196,154,53,.18);
   padding-top: var(--space-md);

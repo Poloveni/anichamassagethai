@@ -597,6 +597,119 @@ p { max-width: 65ch; }
 }
 .card__price { color: var(--color-primary); font-weight: 700; font-size: var(--fs-md); }
 
+/* ============================================================
+   CARROUSEL FORMULES (homepage)
+   ============================================================ */
+.formules-carousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.formules-carousel__track {
+  grid-column: 2;
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge */
+  padding: var(--space-xs) 0;   /* Pour ne pas couper les ombres */
+}
+.formules-carousel__track::-webkit-scrollbar { display: none; }
+
+.formules-carousel .formule-card {
+  flex: 0 0 calc((100% - 2 * var(--space-md)) / 3); /* 3 cartes visibles desktop */
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* Flèches */
+.carousel-arrow {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+  z-index: 2;
+}
+.carousel-arrow svg { width: 22px; height: 22px; }
+.carousel-arrow:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  transform: scale(1.06);
+  box-shadow: var(--shadow);
+}
+.carousel-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+.carousel-arrow--prev { grid-column: 1; justify-self: end; }
+.carousel-arrow--next { grid-column: 3; justify-self: start; }
+
+/* Dots de pagination */
+.carousel-dots {
+  grid-column: 2;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+.carousel-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition), width var(--transition);
+}
+.carousel-dot:hover { background-color: var(--color-secondary); }
+.carousel-dot[aria-selected="true"] {
+  background-color: var(--color-primary);
+  width: 28px;
+  border-radius: 6px;
+}
+
+/* Tablette : 2 cartes visibles + flèches plus petites */
+@media (max-width: 1024px) {
+  .formules-carousel { grid-template-columns: 40px 1fr 40px; gap: var(--space-sm); }
+  .carousel-arrow { width: 40px; height: 40px; }
+  .formules-carousel .formule-card {
+    flex-basis: calc((100% - var(--space-md)) / 2);
+  }
+}
+
+/* Mobile : 1 carte + flèches masquées (swipe naturel) */
+@media (max-width: 640px) {
+  .formules-carousel {
+    grid-template-columns: 1fr;
+  }
+  .carousel-arrow { display: none; }
+  .formules-carousel__track {
+    grid-column: 1;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    margin: 0 calc(-1 * var(--space-md));
+    scroll-padding-left: var(--space-md);
+  }
+  .formules-carousel .formule-card {
+    flex-basis: 85%;
+    scroll-snap-align: center;
+  }
+  .carousel-dots { grid-column: 1; }
+}
+
 /* Carte formule — tilt 3D géré par JS aussi */
 .formule-card {
   background-color: var(--color-bg-card);

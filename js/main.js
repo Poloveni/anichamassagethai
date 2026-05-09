@@ -206,7 +206,8 @@
    *    retour en douceur à l'état neutre.
    * ───────────────────────────────────────────────── */
   if (motionOk && !isTouch) {
-    const tiltEls = document.querySelectorAll('.card, .formule-card');
+    const tiltEls = Array.from(document.querySelectorAll('.card, .formule-card'))
+      .filter(el => !el.closest('[data-carousel]'));
 
     tiltEls.forEach((el) => {
       let animFrame;
@@ -251,5 +252,136 @@
     }
     if (form) form.hidden = true;
   }
+
+  /* ─────────────────────────────────────────────────
+   * 9. CARROUSEL FORMULES
+   *    - Scroll horizontal natif (snap)
+   *    - Boutons prev/next
+   *    - Dots de pagination synchronisés
+   *    - Auto-play (pause au survol et au focus)
+   *    - Swipe natif sur mobile
+   *    - Clavier : flèches ←/→
+   * ───────────────────────────────────────────────── */
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const track    = carousel.querySelector('[data-carousel-track]');
+    const prevBtn  = carousel.querySelector('[data-carousel-prev]');
+    const nextBtn  = carousel.querySelector('[data-carousel-next]');
+    const dotsBox  = carousel.querySelector('[data-carousel-dots]');
+    if (!track) return;
+
+    const slides = Array.from(track.children);
+    if (!slides.length) return;
+
+    /* Création des dots */
+    if (dotsBox) {
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `Aller à la formule ${i + 1}`);
+        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        dot.addEventListener('click', () => goTo(i));
+        dotsBox.appendChild(dot);
+      });
+    }
+    const dots = dotsBox ? Array.from(dotsBox.children) : [];
+
+    /* Navigation */
+    function getStep() {
+      // Largeur d'une carte + gap
+      const first = slides[0];
+      const second = slides[1];
+      if (!second) return first.getBoundingClientRect().width;
+      return second.getBoundingClientRect().left - first.getBoundingClientRect().left;
+    }
+
+    function currentIndex() {
+      const step = getStep();
+      if (!step) return 0;
+      return Math.round(track.scrollLeft / step);
+    }
+
+    function goTo(i) {
+      const max = slides.length - 1;
+      const idx = Math.max(0, Math.min(max, i));
+      const step = getStep();
+      track.scrollTo({ left: idx * step, behavior: motionOk ? 'smooth' : 'auto' });
+    }
+
+    function next() {
+      const idx = currentIndex();
+      // Si on est à la fin, on revient au début (auto-play loop)
+      if (idx >= slides.length - 1) goTo(0);
+      else                          goTo(idx + 1);
+    }
+
+    function prev() {
+      const idx = currentIndex();
+      if (idx <= 0) goTo(slides.length - 1);
+      else          goTo(idx - 1);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', prev);
+    if (nextBtn) nextBtn.addEventListener('click', next);
+
+    /* Synchro dots + état des boutons sur scroll */
+    let scrollTimer;
+    function onScroll() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const idx = currentIndex();
+        dots.forEach((d, i) => d.setAttribute('aria-selected', i === idx ? 'true' : 'false'));
+      }, 60);
+    }
+    track.addEventListener('scroll', onScroll, { passive: true });
+
+    /* Clavier */
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); prev(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    });
+    carousel.tabIndex = 0;
+
+    /* Auto-play */
+    const delay = parseInt(carousel.dataset.autoplay || '0', 10);
+    let timer = null;
+    let isPaused = false;
+
+    function play() {
+      if (!delay || !motionOk) return;
+      stop();
+      timer = setInterval(() => { if (!isPaused) next(); }, delay);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    /* Pause au survol / focus / interaction tactile */
+    ['mouseenter','focusin','touchstart'].forEach(ev =>
+      carousel.addEventListener(ev, () => { isPaused = true; }, { passive: true })
+    );
+    ['mouseleave','focusout','touchend'].forEach(ev =>
+      carousel.addEventListener(ev, () => { isPaused = false; }, { passive: true })
+    );
+
+    /* Pause si l'onglet n'est pas visible */
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else play();
+    });
+
+    /* Démarre seulement quand le carrousel arrive dans le viewport */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(entry => entry.isIntersecting ? play() : stop());
+      }, { threshold: 0.25 }).observe(carousel);
+    } else {
+      play();
+    }
+
+    /* Resize : recalcule le snap */
+    window.addEventListener('resize', () => {
+      const idx = currentIndex();
+      requestAnimationFrame(() => goTo(idx));
+    });
+  });
 
 })();

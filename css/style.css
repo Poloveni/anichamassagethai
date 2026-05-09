@@ -1244,6 +1244,7 @@ p { max-width: 65ch; }
   flex-direction: column;
   gap: var(--space-sm);
   position: relative;
+  overflow: visible; /* Annule l'overflow hidden hérité du carrousel pour laisser le badge dépasser */
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 .formules-grid .formule-card:hover {

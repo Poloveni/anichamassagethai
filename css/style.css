@@ -1233,32 +1233,129 @@ p { max-width: 65ch; }
   gap: var(--space-lg);
   margin-top: var(--space-xl);
 }
-.formule-card__header {
+
+/* === Carte formule éditoriale (page Tarifs) === */
+.formules-grid .formule-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
   gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
-.formule-card__name {
-  font-family: var(--font-serif);
-  font-size: var(--fs-md);
-  font-style: italic;
-  color: var(--color-primary);
+.formules-grid .formule-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold);
+  border-color: rgba(196,154,53,.45);
 }
-.formule-card__pricing { text-align: right; }
-.formule-card__duration { display: block; font-size: var(--fs-xs); color: var(--color-muted); }
-.formule-card__price {
-  font-family: var(--font-serif);
-  font-size: var(--fs-lg);
+
+.formules-grid .formule-card .formule-card__duration {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
   font-weight: 600;
-  color: var(--color-text);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin: 0;
 }
-.formule-card__body ul { padding-left: var(--space-md); }
-.formule-card__body li { font-size: var(--fs-sm); color: var(--color-muted); margin-bottom: var(--space-xs); }
-.formule-card__body p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0 0 var(--space-sm); }
+
+.formules-grid .formule-card .formule-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+.formules-grid .formule-card .formule-card__intro {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  margin: var(--space-2xs) 0 0;
+  line-height: 1.5;
+}
+
+.formules-grid .formule-card .formule-card__items {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-xs) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.formules-grid .formule-card .formule-card__items li {
+  position: relative;
+  padding-left: 1.1em;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  line-height: 1.45;
+}
+.formules-grid .formule-card .formule-card__items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px; height: 1.5px;
+  background-color: var(--color-secondary);
+}
+
+.formules-grid .formule-card .formule-card__price {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px dashed var(--color-border);
+  letter-spacing: 0.01em;
+}
+
+/* Featured (Orchidée) — fond or doux + badge en pastille flottante */
+.formules-grid .formule-card--featured {
+  background: linear-gradient(160deg, #FEF8E8 0%, #F9EDCC 100%);
+  border-color: rgba(196,154,53,.55);
+  box-shadow: 0 0 0 1px rgba(196,154,53,.20), 0 18px 40px rgba(196,154,53,.10);
+}
+.formules-grid .formule-card--featured .formule-card__price { color: var(--color-primary); }
+.formules-grid .formule-card--featured .formule-card__intro { color: #7A6845; }
+
+.formule-badge {
+  position: absolute;
+  top: -12px;
+  right: var(--space-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(139,94,60,0.30);
+  z-index: 1;
+}
+.formule-badge svg { width: 12px; height: 12px; color: var(--color-secondary); }
+
+/* Tablette */
+@media (max-width: 1024px) {
+  .formules-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+  .formules-grid .formule-card { padding: var(--space-md); }
+  .formules-grid .formule-card .formule-card__name { font-size: 1.5rem; }
+}
+/* Mobile */
+@media (max-width: 640px) {
+  .formules-grid { grid-template-columns: 1fr; }
+}
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

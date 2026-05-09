@@ -1327,8 +1327,9 @@ p { max-width: 65ch; }
 
 .formule-badge {
   position: absolute;
-  top: -12px;
-  right: var(--space-md);
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1340,9 +1341,10 @@ p { max-width: 65ch; }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  white-space: nowrap;
   border-radius: var(--radius-full);
   box-shadow: 0 4px 12px rgba(139,94,60,0.30);
-  z-index: 1;
+  z-index: 2;
 }
 .formule-badge svg { width: 12px; height: 12px; color: var(--color-secondary); }
 

@@ -254,7 +254,104 @@
   }
 
   /* ─────────────────────────────────────────────────
-   * 9. CARROUSEL FORMULES
+   * 9. EFFETS DÉCORATIFS HOMEPAGE
+   * ───────────────────────────────────────────────── */
+
+  /* 9a. Barre de progression du scroll */
+  const progressBar = document.querySelector('[data-scroll-progress]');
+  if (progressBar) {
+    let rafScroll;
+    const updateProgress = () => {
+      cancelAnimationFrame(rafScroll);
+      rafScroll = requestAnimationFrame(() => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+        progressBar.style.width = pct + '%';
+      });
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  /* 9b. Reveal du H1 hero — découpe en mots avec stagger */
+  const heroTitle = document.querySelector('.hero h1');
+  if (heroTitle && motionOk) {
+    const tagsToWrap = heroTitle.cloneNode(true);
+    // Récupère les noeuds enfants (texte + <em> + <br>)
+    const wrapTextNodes = (node) => {
+      Array.from(node.childNodes).forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const words = child.textContent.split(/(\s+)/).filter(s => s.length);
+          const frag = document.createDocumentFragment();
+          words.forEach(w => {
+            if (w.trim().length === 0) {
+              frag.appendChild(document.createTextNode(w));
+            } else {
+              const span = document.createElement('span');
+              span.className = 'word';
+              span.textContent = w;
+              frag.appendChild(span);
+            }
+          });
+          child.replaceWith(frag);
+        } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+          wrapTextNodes(child);
+        }
+      });
+    };
+    wrapTextNodes(heroTitle);
+    // Applique un délai progressif
+    heroTitle.querySelectorAll('.word').forEach((w, i) => {
+      w.style.animationDelay = (80 + i * 90) + 'ms';
+    });
+  }
+
+  /* 9c. Compteur animé (data-count-to / data-count-suffix) */
+  const counters = document.querySelectorAll('[data-count-to]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    const animateCount = (el) => {
+      const target = parseInt(el.dataset.countTo, 10);
+      const suffix = el.dataset.countSuffix || '';
+      const dur = 1400;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        // Easing easeOutCubic
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(tick);
+    };
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(c => counterObserver.observe(c));
+  }
+
+  /* 9d. Underline doré progressif sur les H2 de section */
+  if ('IntersectionObserver' in window) {
+    const headers = document.querySelectorAll('.section-header h2');
+    const headObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          headObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    headers.forEach(h => headObserver.observe(h));
+  }
+
+  /* ─────────────────────────────────────────────────
+   * 10. CARROUSEL FORMULES
    *    - Scroll horizontal natif (snap)
    *    - Boutons prev/next
    *    - Dots de pagination synchronisés

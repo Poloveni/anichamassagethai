@@ -2016,21 +2016,21 @@ h2 { letter-spacing: -0.02em; }
    17. EFFETS DÉCORATIFS
    ============================================================ */
 
-/* 17a. Barre de progression du scroll (haut de page) */
+/* 17a. Barre de progression du scroll (haut de page) — visible et dorée */
 .scroll-progress {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 3px;
+  height: 5px;
   z-index: 200;
-  background-color: rgba(0,0,0,0.04);
+  background-color: rgba(196,154,53,0.10);
   pointer-events: none;
 }
 .scroll-progress__bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--color-secondary, #B89B72) 0%, var(--color-primary, #8B5E3C) 100%);
+  background: linear-gradient(90deg, var(--color-secondary, #B89B72) 0%, var(--color-primary, #8B5E3C) 50%, var(--color-secondary, #B89B72) 100%);
   transition: width 80ms linear;
-  box-shadow: 0 0 8px rgba(196,154,53,0.45);
+  box-shadow: 0 0 12px rgba(196,154,53,0.65);
 }
 
 /* 17b. Vidéo hero — léger Ken Burns (zoom et pan très lents) */
@@ -2054,29 +2054,31 @@ h2 { letter-spacing: -0.02em; }
 }
 .hero__particles span {
   position: absolute;
-  bottom: -20px;
-  width: 6px; height: 6px;
+  bottom: -30px;
+  width: 10px; height: 10px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,225,170,0.85) 0%, rgba(196,154,53,0) 70%);
-  filter: blur(0.4px);
+  background: radial-gradient(circle, rgba(255,235,180,1) 0%, rgba(255,205,120,0.7) 35%, rgba(196,154,53,0) 75%);
+  filter: blur(0.3px);
   opacity: 0;
-  animation: floatUp 14s linear infinite;
+  animation: floatUp 11s linear infinite;
+  box-shadow: 0 0 8px rgba(255,215,140,0.5);
 }
-.hero__particles span:nth-child(1) { left:  8%; width: 5px; height: 5px; animation-delay: 0s;   animation-duration: 18s; }
-.hero__particles span:nth-child(2) { left: 18%; width: 8px; height: 8px; animation-delay: 3s;   animation-duration: 22s; }
-.hero__particles span:nth-child(3) { left: 28%; width: 4px; height: 4px; animation-delay: 7s;   animation-duration: 16s; }
-.hero__particles span:nth-child(4) { left: 42%; width: 7px; height: 7px; animation-delay: 1.5s; animation-duration: 20s; }
-.hero__particles span:nth-child(5) { left: 56%; width: 5px; height: 5px; animation-delay: 5s;   animation-duration: 24s; }
-.hero__particles span:nth-child(6) { left: 68%; width: 9px; height: 9px; animation-delay: 9s;   animation-duration: 19s; }
-.hero__particles span:nth-child(7) { left: 78%; width: 4px; height: 4px; animation-delay: 11s;  animation-duration: 17s; }
-.hero__particles span:nth-child(8) { left: 87%; width: 6px; height: 6px; animation-delay: 4s;   animation-duration: 21s; }
-.hero__particles span:nth-child(9) { left: 95%; width: 5px; height: 5px; animation-delay: 8s;   animation-duration: 23s; }
+.hero__particles span:nth-child(1) { left:  6%; width:  9px; height:  9px; animation-delay: 0s;   animation-duration: 11s; }
+.hero__particles span:nth-child(2) { left: 17%; width: 14px; height: 14px; animation-delay: 1.5s; animation-duration: 13s; }
+.hero__particles span:nth-child(3) { left: 26%; width:  7px; height:  7px; animation-delay: 4s;   animation-duration: 10s; }
+.hero__particles span:nth-child(4) { left: 38%; width: 12px; height: 12px; animation-delay: 0.5s; animation-duration: 12s; }
+.hero__particles span:nth-child(5) { left: 50%; width:  9px; height:  9px; animation-delay: 3s;   animation-duration: 14s; }
+.hero__particles span:nth-child(6) { left: 62%; width: 15px; height: 15px; animation-delay: 5.5s; animation-duration: 11s; }
+.hero__particles span:nth-child(7) { left: 74%; width:  8px; height:  8px; animation-delay: 6s;   animation-duration: 10s; }
+.hero__particles span:nth-child(8) { left: 84%; width: 11px; height: 11px; animation-delay: 2s;   animation-duration: 13s; }
+.hero__particles span:nth-child(9) { left: 93%; width:  9px; height:  9px; animation-delay: 4.5s; animation-duration: 12s; }
 
 @keyframes floatUp {
   0%   { transform: translateY(0)      translateX(0);     opacity: 0; }
-  15%  {                                                  opacity: 0.8; }
-  50%  { transform: translateY(-50vh)  translateX(20px);  opacity: 0.6; }
-  100% { transform: translateY(-100vh) translateX(-10px); opacity: 0; }
+  10%  {                                                  opacity: 1; }
+  50%  { transform: translateY(-50vh)  translateX(30px);  opacity: 0.85; }
+  90%  {                                                  opacity: 0.7; }
+  100% { transform: translateY(-100vh) translateX(-15px); opacity: 0; }
 }
 
 /* 17d. Effet "shine" sur les CTA primaires */

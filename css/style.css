@@ -905,7 +905,8 @@ p { max-width: 65ch; }
 /* ============================================================
    10. PHILOSOPHIE
    ============================================================ */
-.philosophy {
+/* Grid 2 colonnes uniquement sur la homepage (texte + image), pas sur la page À propos */
+div.philosophy {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2xl);
@@ -1632,7 +1633,7 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .reassurance__item { flex-direction: row; align-items: center; gap: var(--space-md); }
   .reassurance__icon { margin-bottom: 0; }
 
-  .philosophy,
+  div.philosophy,
   .contact-quick { grid-template-columns: 1fr; gap: var(--space-lg); }
   .philosophy__image, .contact-quick__map { aspect-ratio: 16 / 9; }
 

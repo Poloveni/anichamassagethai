@@ -1420,47 +1420,79 @@ div.philosophy {
 .ci-block ul li { margin-bottom: var(--space-xs); }
 
 /* ============================================================
-   14c. PAGES TARIFS
+   14c. PAGES TARIFS — menu éditorial
    ============================================================ */
 .tarifs-table {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
   margin-top: var(--space-xl);
+  display: flex;
+  flex-direction: column;
 }
+/* En-tête : on le retire visuellement (le visuel "menu" parle de lui-même) */
+.tarifs-row--header { display: none; }
+
 .tarifs-row {
   display: grid;
-  grid-template-columns: 1fr 120px 100px;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-bg-card);
-  transition: background-color var(--transition);
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  column-gap: var(--space-xl);
+  row-gap: var(--space-2xs);
+  padding: var(--space-lg) 0;
+  border-bottom: 1px dashed rgba(196,154,53,.30);
+  transition: padding var(--transition);
 }
-.tarifs-row:last-child { border-bottom: none; }
-.tarifs-row:hover { background-color: var(--color-bg-alt); }
-.tarifs-row--header {
-  background-color: var(--color-bg-surface);
+.tarifs-row:first-of-type { padding-top: 0; }
+.tarifs-row:last-of-type  { border-bottom: none; }
+
+/* Bloc nom + sous-titre */
+.tarifs-row__name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.tarifs-row__name strong {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+.tarifs-row__name span {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Durée */
+.tarifs-row__duration {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-muted);
-  cursor: default;
-}
-.tarifs-row--header:hover { background-color: var(--color-bg-surface); }
-.tarifs-row__name strong { display: block; font-size: var(--fs-sm); }
-.tarifs-row__name span   { font-size: var(--fs-xs); color: var(--color-muted); }
-.tarifs-row__duration { font-size: var(--fs-sm); color: var(--color-muted); }
-.tarifs-row__price {
-  font-family: var(--font-serif);
-  font-size: var(--fs-md);
-  font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-secondary);
+  white-space: nowrap;
   text-align: right;
 }
+
+/* Prix */
+.tarifs-row__price {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-primary);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Léger highlight au survol (ligne entière) */
+.tarifs-row:hover .tarifs-row__name strong { color: var(--color-primary); }
+.tarifs-row:hover .tarifs-row__price       { transform: scale(1.04); }
+.tarifs-row__price { transition: transform 0.25s ease; }
 .formules-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1957,7 +1989,16 @@ a.contact-block__value:hover { color: var(--color-primary); }
 
   /* Pages secondaires mobile */
   .formules-grid { grid-template-columns: 1fr; }
-  .tarifs-row { grid-template-columns: 1fr 80px 70px; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); }
+  /* Tarifs : sur mobile on bascule en deux lignes (nom + sous-titre puis durée/prix) */
+  .tarifs-row {
+    grid-template-columns: 1fr auto;
+    column-gap: var(--space-md);
+    padding: var(--space-md) 0;
+  }
+  .tarifs-row__name { grid-column: 1 / -1; margin-bottom: var(--space-2xs); }
+  .tarifs-row__name strong { font-size: 1.15rem; }
+  .tarifs-row__duration { grid-column: 1; }
+  .tarifs-row__price { grid-column: 2; font-size: 1.25rem; }
   .timeline { padding-left: var(--space-lg); }
   .timeline-item { grid-template-columns: 60px 1fr; gap: var(--space-sm); }
   .testimonials-grid--full { grid-template-columns: 1fr; }

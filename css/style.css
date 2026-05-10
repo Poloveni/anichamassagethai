@@ -1165,13 +1165,14 @@ div.philosophy {
   pointer-events: none;
 }
 .page-hero .container { position: relative; z-index: 1; }
-.page-hero .eyebrow { color: var(--color-secondary, #B89B72); }
+.page-hero .eyebrow { color: var(--color-primary-light, #D4B055); }
+.page-hero .eyebrow::before { background-color: var(--color-primary-light, #D4B055); }
 .page-hero h1 {
   font-size: var(--fs-2xl);
   margin-bottom: var(--space-sm);
   color: #FFFFFF;
 }
-.page-hero h1 em { color: var(--color-secondary, #B89B72); font-style: italic; }
+.page-hero h1 em { color: var(--color-primary-light, #D4B055); font-style: italic; }
 .page-hero p  {
   color: rgba(255,255,255,0.88);
   margin: 0 auto;

@@ -926,6 +926,41 @@ p { max-width: 65ch; }
   will-change: transform;
 }
 
+/* Page À propos : section philosophie centrée (sans image) */
+.philosophy .philosophy__inner {
+  max-width: 70ch;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  text-align: center;
+}
+.philosophy .philosophy__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: center;
+}
+.philosophy .philosophy__content blockquote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--color-text);
+  border-left: 3px solid var(--color-secondary);
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  max-width: 60ch;
+}
+.philosophy .philosophy__content blockquote cite {
+  display: block;
+  margin-top: var(--space-xs);
+  font-style: normal;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  letter-spacing: 0.05em;
+}
+
 /* ============================================================
    12. CONTACT RAPIDE
    ============================================================ */

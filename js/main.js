@@ -336,6 +336,26 @@
     counters.forEach(c => counterObserver.observe(c));
   }
 
+  /* 9d-bis. Reveal des sections "massage-detail" (page Massages)
+     - Slide-in alterné gauche/droite
+     - Stagger des bénéfices
+     - Trait doré sous le H2
+     - Halo pulse sur le bouton "Réserver ce soin" */
+  if ('IntersectionObserver' in window) {
+    const massageSections = document.querySelectorAll('.massage-detail');
+    if (massageSections.length) {
+      const massageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            massageObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+      massageSections.forEach(s => massageObserver.observe(s));
+    }
+  }
+
   /* 9d. Underline doré progressif sur les H2 de section */
   if ('IntersectionObserver' in window) {
     const headers = document.querySelectorAll('.section-header h2');

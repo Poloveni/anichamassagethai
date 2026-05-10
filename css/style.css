@@ -1147,12 +1147,19 @@ div.philosophy {
 /* ============================================================
    14b. PAGES MASSAGES
    ============================================================ */
+.massage-detail {
+  position: relative;
+  overflow: hidden;
+}
 .massage-detail__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2xl);
   align-items: center;
+  position: relative;
 }
+
+/* Image avec hover-zoom et halo doré */
 .massage-detail__image {
   border-radius: var(--radius-lg);
   background-size: cover;
@@ -1160,27 +1167,109 @@ div.philosophy {
   aspect-ratio: 4 / 5;
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.5s ease,
+              filter 0.7s ease;
+  will-change: transform;
 }
-.massage-detail__content { display: flex; flex-direction: column; gap: var(--space-md); }
-.massage-detail__content h2 { font-size: var(--fs-xl); margin: 0; }
-.massage-detail__content p  { color: var(--color-muted); margin: 0; }
+.massage-detail__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(196,154,53,0) 0%, rgba(196,154,53,0.18) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  border-radius: var(--radius-lg);
+}
+.massage-detail:hover .massage-detail__image {
+  transform: scale(1.03);
+  box-shadow: 0 30px 70px rgba(196,154,53,0.25), 0 12px 30px rgba(42,42,42,0.15);
+  filter: saturate(1.08);
+}
+.massage-detail:hover .massage-detail__image::after { opacity: 1; }
+
+.massage-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  position: relative;
+}
+.massage-detail__content h2 {
+  font-size: var(--fs-xl);
+  margin: 0;
+  position: relative;
+}
+.massage-detail__content h2::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  margin-top: var(--space-sm);
+  background: linear-gradient(90deg, var(--color-secondary, #B89B72) 0%, transparent 100%);
+  transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s;
+}
+.massage-detail.is-visible .massage-detail__content h2::after { width: 80px; }
+
+.massage-detail__content p { color: var(--color-muted); margin: 0; }
+
+/* Numéro géant en filigrane derrière le titre */
+.massage-detail__content .card__number {
+  position: absolute;
+  top: -40px;
+  left: -10px;
+  font-family: var(--font-serif);
+  font-size: 9rem;
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(196,154,53,0.10);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: color 0.5s ease, transform 0.7s ease;
+}
+.massage-detail:hover .massage-detail__content .card__number {
+  color: rgba(196,154,53,0.20);
+  transform: translateX(-6px);
+}
+.massage-detail__content > * { position: relative; z-index: 1; }
+
+/* Bénéfices : reveal avec stagger au scroll */
 .massage-detail__benefits {
   list-style: none; padding: 0; margin: 0;
   display: flex; flex-direction: column; gap: var(--space-xs);
 }
 .massage-detail__benefits li {
-  padding-left: 1.5em;
+  padding-left: 1.6em;
   position: relative;
   color: var(--color-text);
   font-size: var(--fs-sm);
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 600ms ease, transform 600ms ease;
 }
+.massage-detail.is-visible .massage-detail__benefits li { opacity: 1; transform: translateX(0); }
+.massage-detail.is-visible .massage-detail__benefits li:nth-child(1) { transition-delay: 0.1s; }
+.massage-detail.is-visible .massage-detail__benefits li:nth-child(2) { transition-delay: 0.2s; }
+.massage-detail.is-visible .massage-detail__benefits li:nth-child(3) { transition-delay: 0.3s; }
+.massage-detail.is-visible .massage-detail__benefits li:nth-child(4) { transition-delay: 0.4s; }
+.massage-detail.is-visible .massage-detail__benefits li:nth-child(5) { transition-delay: 0.5s; }
+
 .massage-detail__benefits li::before {
-  content: '◆';
-  position: absolute; left: 0;
-  color: var(--color-primary);
-  font-size: 0.6em;
-  top: 0.3em;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 14px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  transform-origin: left;
+  transition: transform 0.4s ease;
 }
+.massage-detail__benefits li:hover::before { transform: scaleX(1.4); }
+
+/* Pricing pills lumineuses */
 .massage-detail__pricing {
   display: flex; gap: var(--space-sm); flex-wrap: wrap;
 }
@@ -1190,14 +1279,77 @@ div.philosophy {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   padding: var(--space-xs) var(--space-md);
+  position: relative;
+  cursor: default;
+  transition: transform 0.25s ease, box-shadow 0.3s ease,
+              border-color 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
 }
+.pricing-pill::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg,
+    transparent 0%, rgba(255,235,180,0.55) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: left 700ms ease;
+  pointer-events: none;
+}
+.pricing-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-secondary);
+  background: linear-gradient(135deg, #FEF8E8 0%, #F9EDCC 100%);
+  box-shadow: 0 8px 20px rgba(196,154,53,0.20);
+}
+.pricing-pill:hover::before { left: 130%; }
 .pricing-pill__duration { font-size: var(--fs-sm); color: var(--color-muted); }
 .pricing-pill__price {
   font-family: var(--font-serif);
   font-size: var(--fs-md);
   font-weight: 600;
   color: var(--color-primary);
+  letter-spacing: 0.01em;
 }
+
+/* Bouton "Réserver ce soin" — appel doux à l'action */
+.massage-detail .btn--primary {
+  align-self: flex-start;
+  position: relative;
+}
+.massage-detail .btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, rgba(196,154,53,0.35) 0%, rgba(196,154,53,0) 65%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.massage-detail.is-visible .btn--primary::before { opacity: 1; animation: pulseGlow 2.4s ease-in-out infinite; }
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1);    opacity: 0.45; }
+  50%      { transform: scale(1.08); opacity: 0.85; }
+}
+
+/* Apparition au scroll (alternance gauche / droite) */
+.massage-detail__image,
+.massage-detail__content {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 900ms cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.massage-detail--alt .massage-detail__image,
+.massage-detail--alt .massage-detail__content { transform: translateX(40px); }
+.massage-detail.is-visible .massage-detail__image,
+.massage-detail.is-visible .massage-detail__content {
+  opacity: 1;
+  transform: translateX(0);
+}
+.massage-detail.is-visible .massage-detail__content { transition-delay: 0.15s; }
 .ci-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

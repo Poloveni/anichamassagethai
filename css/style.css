@@ -427,9 +427,7 @@ p { max-width: 65ch; }
 }
 
 /* Reduced motion : pause vidéo */
-@media (prefers-reduced-motion: reduce) {
-  .hero__video { animation-play-state: paused; }
-}
+/* Ken Burns vidéo : très doux, on le garde même en reduce-motion */
 
 .hero__overlay {
   position: absolute; inset: 0; z-index: -1;
@@ -1676,11 +1674,13 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .testimonials-grid--full { grid-template-columns: 1fr; }
 }
 
-/* ----- Reduced motion ----- */
+/* ----- Reduced motion -----
+   On désactive seulement les transitions et les animations qui pourraient gêner
+   (mouvements brusques, parallax). Les animations très douces (vidéo Ken Burns,
+   particules dorées du hero, pulsation note Google) sont conservées : leur
+   amplitude et leur lenteur ne posent pas de problème de motion sickness. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }

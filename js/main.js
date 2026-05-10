@@ -119,30 +119,26 @@
   }
 
   /* ─────────────────────────────────────────────────
-   * 8. VIDÉO HERO — lecture automatique robuste
-   *    Tente play() dès que possible ; si Chrome bloque
-   *    (autoplay policy), déverrouille au premier geste.
+   * 8. VIDÉOS HERO — lecture automatique robuste
+   *    Cible la hero homepage (.hero__video) ET les hero
+   *    des pages secondaires (.page-hero__bg video).
+   *    Tente play() dès que possible ; si bloqué par
+   *    l'autoplay policy, déverrouille au premier geste.
    * ───────────────────────────────────────────────── */
-  const heroVideo = document.querySelector('.hero__video');
-  if (heroVideo) {
-    // La vidéo hero est un fond ambiant, pas une animation décorative :
-    // on la joue toujours (muette), même si l'utilisateur préfère moins d'animations.
-    // Les effets parallax, tilt et transitions CSS restent désactivés avec motionOk=false.
-    {
-      heroVideo.muted      = true;
-      heroVideo.playsInline = true;
-
-      let videoPlaying = false;
-
+  const heroVideos = document.querySelectorAll('.hero__video, .page-hero__bg video');
+  if (heroVideos.length) {
+    heroVideos.forEach((vid) => {
+      vid.muted = true;
+      vid.playsInline = true;
+      let isPlaying = false;
       const tryPlay = () => {
-        if (videoPlaying) return;
-        const p = heroVideo.play();
+        if (isPlaying) return;
+        const p = vid.play();
         if (p !== undefined) {
-          p.then(() => { videoPlaying = true; }).catch(() => {
-            /* Autoplay bloqué → déverrouille au premier geste utilisateur */
+          p.then(() => { isPlaying = true; }).catch(() => {
             const unlock = () => {
-              if (videoPlaying) return;
-              heroVideo.play().then(() => { videoPlaying = true; }).catch(() => {});
+              if (isPlaying) return;
+              vid.play().then(() => { isPlaying = true; }).catch(() => {});
               document.removeEventListener('scroll',     unlock, true);
               document.removeEventListener('click',      unlock, true);
               document.removeEventListener('touchstart', unlock, true);
@@ -155,16 +151,10 @@
           });
         }
       };
-
-      /* Tenter immédiatement si données disponibles, sinon attendre */
-      if (heroVideo.readyState >= 2) {
-        tryPlay();
-      } else {
-        heroVideo.addEventListener('loadeddata', tryPlay, { once: true });
-      }
-      /* Double filet : canplaythrough garantit assez de données */
-      heroVideo.addEventListener('canplaythrough', tryPlay, { once: true });
-    }
+      if (vid.readyState >= 2) tryPlay();
+      else vid.addEventListener('loadeddata', tryPlay, { once: true });
+      vid.addEventListener('canplaythrough', tryPlay, { once: true });
+    });
   }
 
   if (motionOk) {

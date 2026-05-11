@@ -1506,13 +1506,36 @@ div.philosophy {
   background-color: #FFFFFF;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
   position: relative;
-  overflow: visible; /* Annule l'overflow hidden hérité du carrousel pour laisser le badge dépasser */
+  overflow: visible; /* Annule l'overflow hidden pour laisser le badge dépasser */
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+/* Image en haut de la carte formule (page Tarifs), avec fallback dégradé doré */
+.formules-grid .formule-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+  background-color: #E8DBC7;
+  background-image: linear-gradient(135deg, #F4E9D2 0%, #DDC9A6 100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Tous les enfants texte reprennent le padding intérieur sauf l'image */
+.formules-grid .formule-card > *:not(.formule-card__image):not(.formule-badge) {
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+.formules-grid .formule-card > .formule-card__duration { padding-top: var(--space-md); }
+.formules-grid .formule-card > .formule-card__price    { padding-bottom: var(--space-lg); }
+/* Si pas d'image : conserve l'ancien padding-top */
+.formules-grid .formule-card:not(:has(.formule-card__image)) > .formule-card__duration {
+  padding-top: var(--space-lg);
 }
 .formules-grid .formule-card:hover {
   transform: translateY(-3px);

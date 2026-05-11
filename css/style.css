@@ -2623,3 +2623,137 @@ h2 { letter-spacing: -0.02em; }
   .hero h1 .word { opacity: 1; transform: none; filter: none; }
   .section-header h2.is-visible::after { width: 80px; }
 }
+
+/* ============================================================
+   18. SECTIONS HOMEPAGE — Objectifs, Ingrédients, Merci
+   ============================================================ */
+
+/* Objectifs de la pression — liste centrée élégante */
+.objectifs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+  max-width: 1000px;
+}
+.objectifs-list li {
+  position: relative;
+  text-align: center;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  font-style: italic;
+  color: var(--color-text);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FDF8EE 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.objectifs-list li::before {
+  content: "✦";
+  display: block;
+  font-size: 1.2rem;
+  color: var(--color-primary-light);
+  margin-bottom: var(--space-2xs);
+}
+.objectifs-list li:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary-light);
+  box-shadow: 0 10px 24px rgba(196,154,53,0.18);
+}
+
+/* Ingrédients (huiles de coco, pochon d'herbes) */
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+}
+.ingredient-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.ingredient-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(42,36,30,0.12);
+}
+.ingredient-card__image {
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+}
+.ingredient-card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.ingredient-card__body h3 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+.ingredient-card__body p {
+  font-size: var(--fs-base);
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Bannière "Merci pour votre visite" — séparateur narratif élégant */
+.merci-banner {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  background: linear-gradient(135deg, #2A241E 0%, #3D342B 100%);
+  position: relative;
+  overflow: hidden;
+}
+.merci-banner::before,
+.merci-banner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-primary-light) 50%, transparent 100%);
+  width: 30%;
+  pointer-events: none;
+}
+.merci-banner::before { left: 0; }
+.merci-banner::after  { right: 0; }
+.merci-banner__deco {
+  display: inline-block;
+  color: var(--color-primary-light);
+  font-size: 1.4rem;
+  margin-bottom: var(--space-sm);
+  animation: floatGently 4s ease-in-out infinite;
+}
+.merci-banner h2 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  line-height: 1.4;
+  color: #F8E9C7;
+  max-width: 38ch;
+  margin: 0 auto;
+  letter-spacing: 0.005em;
+}
+@keyframes floatGently {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50%      { transform: translateY(-4px); opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+  .ingredients-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+  .merci-banner::before, .merci-banner::after { width: 18%; }
+}

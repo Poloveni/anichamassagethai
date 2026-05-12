@@ -2757,3 +2757,16 @@ h2 { letter-spacing: -0.02em; }
   .ingredients-grid { grid-template-columns: 1fr; gap: var(--space-md); }
   .merci-banner::before, .merci-banner::after { width: 18%; }
 }
+
+/* Petite note sous la grille des 4 cartes massages homepage */
+.cards-grid__note {
+  text-align: center;
+  margin-top: var(--space-lg);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--fs-base);
+  color: var(--color-muted);
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}

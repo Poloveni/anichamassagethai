@@ -2154,6 +2154,7 @@ a.contact-block__value:hover { color: var(--color-primary); }
     position: fixed;
     top: var(--header-height);
     left: 0; right: 0; bottom: 0;
+    height: auto;        /* réinitialise height:var(--header-height) hérité du desktop */
     flex-direction: column;
     align-items: stretch;
     gap: 0;

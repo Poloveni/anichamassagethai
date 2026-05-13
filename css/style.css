@@ -1683,9 +1683,10 @@ div.philosophy {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.6em;
-  width: 6px; height: 1.5px;
-  background-color: var(--color-secondary);
+  top: 0.55em;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
 }
 
 .formules-grid .formule-card .formule-card__price {

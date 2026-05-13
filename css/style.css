@@ -1363,15 +1363,19 @@ div.philosophy {
 .massage-detail__benefits li::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: 2px;
   top: 0.55em;
-  width: 14px;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  transform-origin: left;
-  transition: transform 0.4s ease;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--color-primary-light, #D4B055) 0%, var(--color-primary, #C49A35) 70%);
+  box-shadow: 0 0 6px rgba(196,154,53,0.30);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.massage-detail__benefits li:hover::before { transform: scaleX(1.4); }
+.massage-detail__benefits li:hover::before {
+  transform: scale(1.35);
+  box-shadow: 0 0 10px rgba(196,154,53,0.55);
+}
 
 /* Pricing pills lumineuses */
 .massage-detail__pricing {

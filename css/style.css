@@ -2129,26 +2129,50 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .section--tight { padding: var(--space-xl) 0; }
   .section-header { margin-bottom: var(--space-lg); }
 
-  /* === Navigation mobile === */
+  /* === Navigation mobile ===
+     Le <nav> entier devient le tiroir coulissant.
+     Plus de conflits top/bottom entre éléments séparés. */
   .menu-toggle { display: inline-flex; }
 
-  /* Panneau de navigation principal (liste des liens) */
-  .nav__list {
+  /* Tiroir global */
+  .nav {
     position: fixed;
     top: var(--header-height);
-    left: 0; right: 0;
-    bottom: 72px; /* laisser la place au bouton CTA en bas */
+    left: 0; right: 0; bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
     background-color: var(--color-bg);
     transform: translateX(100%);
     transition: transform 350ms ease;
     pointer-events: none;
+    overflow: hidden;
+    z-index: 99;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Ouverture */
+  .nav[data-open="true"] {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Réinitialise les éléments enfants (positionnement géré par le parent) */
+  .nav__list,
+  .nav__cta {
+    position: static;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* Liste des liens — remplit l'espace disponible */
+  .nav__list {
+    flex: 1;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: var(--space-md) var(--space-md) var(--space-sm);
+    padding: var(--space-sm) var(--space-md) 0;
     overflow-y: auto;
-    border-top: 1px solid var(--color-border);
-    z-index: 99;
   }
   .nav__list .nav__link {
     display: block;
@@ -2159,32 +2183,16 @@ a.contact-block__value:hover { color: var(--color-primary); }
     color: var(--color-text);
   }
 
-  /* Bouton "Réserver" ancré en bas de l'écran */
+  /* Bouton "Réserver" — ancré en bas du tiroir */
   .nav__cta {
-    position: fixed;
-    left: 0; right: 0;
-    bottom: 0;
-    top: unset; /* annule toute règle top héritée */
-    height: 72px;
+    flex-shrink: 0;
     background-color: var(--color-bg-alt);
     padding: var(--space-md);
     border-top: 1px solid var(--color-border);
     display: flex;
     align-items: center;
-    justify-content: stretch;
-    transform: translateX(100%);
-    transition: transform 350ms ease;
-    pointer-events: none;
-    z-index: 100;
   }
   .nav__cta .btn { width: 100%; justify-content: center; }
-
-  /* Ouverture du menu */
-  .nav[data-open="true"] .nav__list,
-  .nav[data-open="true"] .nav__cta {
-    transform: translateX(0);
-    pointer-events: auto;
-  }
 
   /* === Hero homepage === */
   .hero__decor { display: none; }

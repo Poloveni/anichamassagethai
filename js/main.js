@@ -394,25 +394,24 @@
     }
     const dots = dotsBox ? Array.from(dotsBox.children) : [];
 
-    /* Navigation */
-    function currentIndex() {
-      const trackLeft = track.getBoundingClientRect().left;
-      let closest = 0, minDist = Infinity;
-      slides.forEach((s, i) => {
-        const dist = Math.abs(s.getBoundingClientRect().left - trackLeft);
-        if (dist < minDist) { minDist = dist; closest = i; }
-      });
-      return closest;
+    /* Navigation — index maintenu explicitement pour éviter les calculs flottants */
+    let _idx = 0;
+
+    function getStep() {
+      // Distance entre deux slides adjacents : constante quelle que soit la position de scroll
+      if (slides.length < 2) return slides[0].offsetWidth;
+      const a = slides[0].getBoundingClientRect().left;
+      const b = slides[1].getBoundingClientRect().left;
+      const diff = b - a;
+      return diff > 1 ? diff : slides[0].offsetWidth;
     }
+
+    function currentIndex() { return _idx; }
 
     function goTo(i) {
       const max = slides.length - 1;
-      const idx = Math.max(0, Math.min(max, i));
-      // scrollLeft cible = scroll actuel + décalage du slide depuis le bord gauche du track
-      const trackLeft = track.getBoundingClientRect().left;
-      const slideLeft = slides[idx].getBoundingClientRect().left;
-      const target = track.scrollLeft + (slideLeft - trackLeft);
-      track.scrollLeft = target;
+      _idx = Math.max(0, Math.min(max, i));
+      track.scrollLeft = _idx * getStep();
     }
 
     function next() {

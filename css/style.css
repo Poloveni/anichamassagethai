@@ -2130,35 +2130,50 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .section-header { margin-bottom: var(--space-lg); }
 
   /* === Navigation mobile ===
-     On supprime backdrop-filter sur mobile : il crée un "containing block"
-     qui piège position:fixed à l'intérieur du header (64px).
-     Sans backdrop-filter, position:fixed fonctionne normalement
-     (relatif au viewport). */
+     Le JS déplace le <nav> hors du header (header.after(nav)).
+     position:fixed est donc relatif au viewport — aucun containing block parasite. */
   .menu-toggle { display: inline-flex; }
 
-  .site-header {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background-color: var(--color-bg); /* fond opaque en remplacement */
-  }
-
-  /* Liste de liens : panneau plein écran fixé au viewport */
-  .nav__list {
+  /* Tiroir plein écran */
+  .nav {
     position: fixed;
     top: var(--header-height);
-    left: 0; right: 0;
-    bottom: 72px;        /* espace pour le bouton Réserver en bas */
+    left: 0; right: 0; bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
     background-color: var(--color-bg);
     transform: translateX(100%);
     transition: transform 350ms ease;
     pointer-events: none;
+    overflow: hidden;
+    z-index: 200;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Ouverture */
+  .nav[data-open="true"] {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Les enfants redeviennent statiques dans le tiroir flex */
+  .nav__list,
+  .nav__cta {
+    position: static;
+    transform: none;
+    pointer-events: auto;
+    background: none;
+  }
+
+  /* Liste des liens — remplit l'espace */
+  .nav__list {
+    flex: 1;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: var(--space-xs) var(--space-md) var(--space-sm);
+    padding: var(--space-xs) var(--space-md) 0;
     overflow-y: auto;
-    border-top: 1px solid var(--color-border);
-    z-index: 200;
   }
   .nav__list .nav__link {
     display: block;
@@ -2169,30 +2184,16 @@ a.contact-block__value:hover { color: var(--color-primary); }
     color: var(--color-text);
   }
 
-  /* Bouton Réserver : bande fixée en bas du viewport */
+  /* Bouton Réserver — ancré en bas du tiroir */
   .nav__cta {
-    position: fixed;
-    left: 0; right: 0;
-    bottom: 0;
-    height: 72px;
-    background-color: var(--color-bg-alt);
-    padding: 0 var(--space-md);
+    flex-shrink: 0;
+    background-color: var(--color-bg-alt) !important;
+    padding: var(--space-md);
     border-top: 1px solid var(--color-border);
     display: flex;
     align-items: center;
-    transform: translateX(100%);
-    transition: transform 350ms ease;
-    pointer-events: none;
-    z-index: 201;        /* au-dessus de la liste */
   }
   .nav__cta .btn { width: 100%; justify-content: center; }
-
-  /* Ouverture : les deux glissent ensemble */
-  .nav[data-open="true"] .nav__list,
-  .nav[data-open="true"] .nav__cta {
-    transform: translateX(0);
-    pointer-events: auto;
-  }
 
   /* === Hero homepage === */
   .hero__decor { display: none; }

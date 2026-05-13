@@ -310,7 +310,7 @@ p { max-width: 65ch; }
   line-height: 1;
 }
 .logo__img {
-  height: 52px;
+  height: 70px;
   width: auto;
   flex-shrink: 0;
   display: block;
@@ -319,21 +319,40 @@ p { max-width: 65ch; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  line-height: 1.1;
 }
 .logo__name {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--color-text);
 }
 .logo__tagline {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-top: 4px;
+}
+/* Sous-titre "Massage thaï" — fin et italique doré, sous la tagline */
+.logo__sub {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-primary-light, #D4B055);
+  margin-top: 1px;
+  letter-spacing: 0.04em;
+}
+
+/* Mobile : on réduit un peu pour que ça reste lisible */
+@media (max-width: 768px) {
+  .logo__img      { height: 52px; }
+  .logo__name     { font-size: 1.35rem; }
+  .logo__tagline  { font-size: 0.62rem; letter-spacing: 0.18em; }
+  .logo__sub      { font-size: 0.68rem; }
 }
 
 .nav { display: flex; align-items: center; gap: var(--space-md); }

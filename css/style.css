@@ -2130,15 +2130,16 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .section-header { margin-bottom: var(--space-lg); }
 
   /* === Navigation mobile ===
-     Le <nav> entier devient le tiroir coulissant.
-     Plus de conflits top/bottom entre éléments séparés. */
+     position: absolute (relatif au header sticky) pour éviter le piège
+     du "containing block" créé par backdrop-filter sur le parent. */
   .menu-toggle { display: inline-flex; }
 
-  /* Tiroir global */
+  /* Tiroir : se positionne juste sous le header, pleine hauteur restante */
   .nav {
-    position: fixed;
-    top: var(--header-height);
-    left: 0; right: 0; bottom: 0;
+    position: absolute;
+    top: 100%;           /* juste sous le bas du header */
+    left: 0; right: 0;
+    height: calc(100vh - var(--header-height));
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -2147,8 +2148,9 @@ a.contact-block__value:hover { color: var(--color-primary); }
     transition: transform 350ms ease;
     pointer-events: none;
     overflow: hidden;
-    z-index: 99;
+    z-index: 200;
     border-top: 1px solid var(--color-border);
+    box-shadow: -4px 0 24px rgba(28,16,0,.12);
   }
 
   /* Ouverture */
@@ -2157,7 +2159,7 @@ a.contact-block__value:hover { color: var(--color-primary); }
     pointer-events: auto;
   }
 
-  /* Réinitialise les éléments enfants (positionnement géré par le parent) */
+  /* Les enfants sont en flux normal dans le tiroir flex-column */
   .nav__list,
   .nav__cta {
     position: static;
@@ -2165,13 +2167,13 @@ a.contact-block__value:hover { color: var(--color-primary); }
     pointer-events: auto;
   }
 
-  /* Liste des liens — remplit l'espace disponible */
+  /* Liste des liens — prend tout l'espace disponible */
   .nav__list {
     flex: 1;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: var(--space-sm) var(--space-md) 0;
+    padding: var(--space-xs) var(--space-md) 0;
     overflow-y: auto;
   }
   .nav__list .nav__link {

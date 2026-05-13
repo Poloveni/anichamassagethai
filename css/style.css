@@ -2950,10 +2950,6 @@ h2 { letter-spacing: -0.02em; }
   gap: var(--space-3xl);
   align-items: center;
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-md);
   position: relative;
   z-index: 1;
 }
@@ -3019,7 +3015,17 @@ h2 { letter-spacing: -0.02em; }
   font-weight: 600;
 }
 
-/* Photo */
+/* Photo + animations d'entrée */
+.welcome__content,
+.welcome__visual {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.welcome__content { transform: translateX(-30px); }
+.welcome__visual  { transform: translateX(30px); }
+.welcome.is-visible .welcome__content { opacity: 1; transform: translateX(0); }
+.welcome.is-visible .welcome__visual  { opacity: 1; transform: translateX(0); transition-delay: 0.15s; }
+
 .welcome__visual { position: relative; }
 .welcome__img-frame {
   position: relative;
@@ -3030,8 +3036,8 @@ h2 { letter-spacing: -0.02em; }
 .welcome__img-frame::after {
   content: "";
   position: absolute;
-  inset: 12px -12px -12px 12px;
-  border: 2px solid rgba(196,154,53,.35);
+  inset: 14px -14px -14px 14px;
+  border: 2px solid rgba(196,154,53,.40);
   border-radius: var(--radius-lg);
   pointer-events: none;
   z-index: -1;
@@ -3041,7 +3047,9 @@ h2 { letter-spacing: -0.02em; }
   height: 520px;
   object-fit: cover;
   display: block;
+  transition: transform 0.6s ease;
 }
+.welcome__img-frame:hover .welcome__img { transform: scale(1.04); }
 
 .welcome__call {
   font-family: var(--font-serif);

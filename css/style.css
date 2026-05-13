@@ -583,6 +583,33 @@ p { max-width: 65ch; }
   line-height: 1.2;
 }
 .card__desc { font-size: var(--fs-sm); color: var(--color-muted); flex: 1; }
+
+/* CTA "Découvrir →" en bas de chaque carte massage */
+.card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(196,154,53,.25);
+  align-self: flex-start;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary, #C49A35);
+  text-decoration: none;
+  transition: color 0.3s ease, gap 0.3s ease;
+  width: 100%;
+  border-top-width: 1px;
+}
+.card__cta span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.card:hover .card__cta { color: var(--color-primary-light, #D4B055); gap: 0.7em; }
+.card:hover .card__cta span { transform: translateX(4px); }
 .card__meta {
   display: flex;
   justify-content: space-between;
@@ -745,6 +772,34 @@ p { max-width: 65ch; }
 }
 .formule-card > .formule-card__duration { padding-top: 0; }
 .formule-card > .formule-card__price    { padding-bottom: var(--space-md); }
+.formule-card > .formule-card__cta      { padding-bottom: var(--space-md); }
+
+/* CTA "Découvrir →" en bas de chaque carte formule du carrousel */
+.formule-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-md);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary, #C49A35);
+  text-decoration: none;
+  align-self: flex-start;
+  border-top: 1px solid rgba(196,154,53,.25);
+  width: calc(100% - 2 * var(--space-md));
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+.formule-card__cta span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.formule-card:hover .formule-card__cta { color: var(--color-primary-light, #D4B055); gap: 0.7em; }
+.formule-card:hover .formule-card__cta span { transform: translateX(4px); }
 
 /* Featured : fond or nacré */
 .formule-card--featured {

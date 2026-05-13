@@ -2945,9 +2945,11 @@ h2 { letter-spacing: -0.02em; }
 .welcome::after  { bottom: -100px; right: -100px; }
 
 .welcome__inner {
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: var(--space-3xl);
+  align-items: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2991,22 +2993,54 @@ h2 { letter-spacing: -0.02em; }
   background: linear-gradient(90deg, var(--color-primary-light, #D4B055) 0%, transparent 100%);
 }
 
+.welcome__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+.welcome__content .eyebrow { text-align: left; }
+.welcome__content .eyebrow::before { margin-left: 0; }
+
 .welcome__text {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  max-width: 65ch;
 }
 .welcome__text p {
   font-size: var(--fs-md);
   line-height: 1.75;
   color: var(--color-text);
   margin: 0;
-  text-align: center;
+  text-align: left;
 }
 .welcome__text strong {
   color: var(--color-primary, #C49A35);
   font-weight: 600;
+}
+
+/* Photo */
+.welcome__visual { position: relative; }
+.welcome__img-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.welcome__img-frame::after {
+  content: "";
+  position: absolute;
+  inset: 12px -12px -12px 12px;
+  border: 2px solid rgba(196,154,53,.35);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: -1;
+}
+.welcome__img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
 }
 
 .welcome__call {
@@ -3017,7 +3051,7 @@ h2 { letter-spacing: -0.02em; }
   color: var(--color-text);
   margin: var(--space-md) 0 var(--space-sm);
   max-width: 50ch;
-  text-align: center;
+  text-align: left;
 }
 .welcome__call em {
   color: var(--color-primary, #C49A35);
@@ -3033,7 +3067,12 @@ h2 { letter-spacing: -0.02em; }
 /* Mobile */
 @media (max-width: 768px) {
   .welcome { padding: var(--space-2xl) 0; }
+  .welcome__inner { grid-template-columns: 1fr; gap: var(--space-xl); }
+  .welcome__visual { display: none; }
   .welcome__ornament::before,
   .welcome__ornament::after { width: 50px; }
-  .welcome__text p { font-size: var(--fs-base); text-align: left; }
+  .welcome__content { align-items: center; text-align: center; }
+  .welcome__content .eyebrow { text-align: center; }
+  .welcome__text p { font-size: var(--fs-base); text-align: center; }
+  .welcome__call { text-align: center; }
 }

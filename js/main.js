@@ -346,6 +346,18 @@
     }
   }
 
+  /* 9c-bis. Animation d'entrée de la section Bienvenue */
+  if ('IntersectionObserver' in window) {
+    const welcomeSection = document.querySelector('.welcome');
+    if (welcomeSection) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.15 }).observe(welcomeSection);
+    }
+  }
+
   /* 9d. Underline doré progressif sur les H2 de section */
   if ('IntersectionObserver' in window) {
     const headers = document.querySelectorAll('.section-header h2');

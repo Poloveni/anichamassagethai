@@ -395,15 +395,11 @@
     const dots = dotsBox ? Array.from(dotsBox.children) : [];
 
     /* Navigation */
-    function slideLeft(slide) {
-      // Position du slide par rapport au bord gauche du track (pas du viewport)
-      return slide.offsetLeft - track.offsetLeft;
-    }
-
     function currentIndex() {
+      const trackLeft = track.getBoundingClientRect().left;
       let closest = 0, minDist = Infinity;
       slides.forEach((s, i) => {
-        const dist = Math.abs(slideLeft(s) - track.scrollLeft);
+        const dist = Math.abs(s.getBoundingClientRect().left - trackLeft);
         if (dist < minDist) { minDist = dist; closest = i; }
       });
       return closest;
@@ -412,12 +408,11 @@
     function goTo(i) {
       const max = slides.length - 1;
       const idx = Math.max(0, Math.min(max, i));
-      const target = slideLeft(slides[idx]);
-      if (motionOk && 'scrollBehavior' in document.documentElement.style) {
-        track.scrollTo({ left: target, behavior: 'smooth' });
-      } else {
-        track.scrollLeft = target;
-      }
+      // scrollLeft cible = scroll actuel + décalage du slide depuis le bord gauche du track
+      const trackLeft = track.getBoundingClientRect().left;
+      const slideLeft = slides[idx].getBoundingClientRect().left;
+      const target = track.scrollLeft + (slideLeft - trackLeft);
+      track.scrollLeft = target;
     }
 
     function next() {

@@ -396,11 +396,11 @@
 
     /* Navigation */
     function getStep() {
-      // Largeur d'une carte + gap
+      // offsetLeft est relatif au parent (track) — fiable quel que soit le scroll
       const first = slides[0];
       const second = slides[1];
-      if (!second) return first.getBoundingClientRect().width;
-      return second.getBoundingClientRect().left - first.getBoundingClientRect().left;
+      if (!second) return first.offsetWidth;
+      return second.offsetLeft - first.offsetLeft;
     }
 
     function currentIndex() {

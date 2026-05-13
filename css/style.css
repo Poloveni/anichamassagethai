@@ -1876,7 +1876,42 @@ div.philosophy {
   padding-top: 2px;
 }
 .timeline-item__content h3 { font-size: var(--fs-md); margin: 0 0 var(--space-xs); }
-.timeline-item__content p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0; }
+.timeline-item__content p  { font-size: var(--fs-sm); color: var(--color-muted); margin: 0 0 var(--space-xs); }
+.timeline-item__content p:last-child { margin-bottom: 0; }
+
+.timeline-list {
+  list-style: none;
+  margin: var(--space-xs) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+.timeline-list li {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  padding-left: 1.2em;
+  position: relative;
+}
+.timeline-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.about-notice {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-left: 3px solid var(--color-border-mid);
+  background: var(--color-bg-alt);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+}
 
 /* ============================================================
    14e. PAGE CONTACT

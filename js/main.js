@@ -12,16 +12,6 @@
   /* ─────────────────────────────────────────────────
    * 1. Menu mobile (burger)
    * ───────────────────────────────────────────────── */
-
-  /* Portail mobile : déplace le <nav> hors du <header> pour échapper
-     aux "containing blocks" créés par backdrop-filter / position:sticky
-     sur le header parent (empêchent position:fixed de fonctionner). */
-  const header = document.querySelector('.site-header');
-  const navPortal = document.querySelector('.nav');
-  if (header && navPortal && window.innerWidth <= 768) {
-    header.after(navPortal);
-  }
-
   const toggle = document.querySelector('.menu-toggle');
   const nav    = document.querySelector('.nav');
 
@@ -51,6 +41,7 @@
   /* ─────────────────────────────────────────────────
    * 2. Header : ombre au scroll
    * ───────────────────────────────────────────────── */
+  const header = document.querySelector('.site-header');
   if (header) {
     const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 4);
     onScroll();

@@ -395,13 +395,15 @@
     const dots = dotsBox ? Array.from(dotsBox.children) : [];
 
     /* Navigation */
+    function slideLeft(slide) {
+      // Position du slide par rapport au bord gauche du track (pas du viewport)
+      return slide.offsetLeft - track.offsetLeft;
+    }
+
     function currentIndex() {
-      // Slide dont le bord gauche est le plus proche du bord gauche du track
-      const trackLeft = track.getBoundingClientRect().left;
-      let closest = 0;
-      let minDist = Infinity;
+      let closest = 0, minDist = Infinity;
       slides.forEach((s, i) => {
-        const dist = Math.abs(s.getBoundingClientRect().left - trackLeft);
+        const dist = Math.abs(slideLeft(s) - track.scrollLeft);
         if (dist < minDist) { minDist = dist; closest = i; }
       });
       return closest;
@@ -410,12 +412,12 @@
     function goTo(i) {
       const max = slides.length - 1;
       const idx = Math.max(0, Math.min(max, i));
-      // scrollIntoView : méthode native la plus robuste pour les carousels snappés
-      slides[idx].scrollIntoView({
-        behavior: motionOk ? 'smooth' : 'auto',
-        inline: 'start',
-        block: 'nearest'
-      });
+      const target = slideLeft(slides[idx]);
+      if (motionOk && 'scrollBehavior' in document.documentElement.style) {
+        track.scrollTo({ left: target, behavior: 'smooth' });
+      } else {
+        track.scrollLeft = target;
+      }
     }
 
     function next() {

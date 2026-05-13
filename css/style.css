@@ -912,6 +912,27 @@ p { max-width: 65ch; }
   font-weight: 600;
   color: var(--color-text);
 }
+.google-aggregate__rating {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+.google-aggregate__count {
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  margin: 0;
+}
+.google-aggregate__score span {
+  font-size: var(--fs-md);
+  color: var(--color-muted);
+}
+.google-aggregate__cta {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
 /* G coloré façon Google */
 .google-g {
   font-size: 1.6rem;
@@ -2097,10 +2118,18 @@ a.contact-block__value:hover { color: var(--color-primary); }
 @media (max-width: 768px) {
   :root {
     --header-height: 64px;
+    --space-xl:  3rem;
     --space-2xl: 4rem;
-    --space-3xl: 6rem;
+    --space-3xl: 5rem;
   }
 
+  /* === Layout de base === */
+  .container { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+  .section        { padding: var(--space-2xl) 0; }
+  .section--tight { padding: var(--space-xl) 0; }
+  .section-header { margin-bottom: var(--space-lg); }
+
+  /* === Navigation === */
   .menu-toggle { display: inline-flex; }
 
   .nav__list,
@@ -2134,14 +2163,48 @@ a.contact-block__value:hover { color: var(--color-primary); }
   }
   .nav__cta .btn { width: 100%; }
 
+  /* === Hero homepage === */
   .hero__decor { display: none; }
+  .hero__inner { padding: var(--space-xl) 0 var(--space-2xl); }
+  .hero__subtitle { font-size: var(--fs-base); }
+  .hero__actions { flex-direction: column; align-items: flex-start; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
 
+  /* === Page hero (pages secondaires) === */
+  .page-hero { min-height: 260px; padding: var(--space-xl) 0 var(--space-lg); }
+  .page-hero h1 { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+  .page-hero p  { font-size: var(--fs-sm); }
+
+  /* === Réassurance === */
+  .reassurance__item { flex-direction: column; align-items: flex-start; }
+  .reassurance__icon { margin-bottom: var(--space-2xs); }
+
+  /* === Cartes soins (homepage) === */
+  .cards-grid--soins { grid-template-columns: 1fr; }
+
+  /* === Google aggregate === */
+  .google-aggregate {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+  .google-aggregate__cta { flex-direction: column; width: 100%; }
+  .google-aggregate__cta .btn { width: 100%; }
+
+  /* === Footer === */
   .site-footer__grid { grid-template-columns: 1fr; gap: var(--space-md); }
-  .site-footer__bottom { flex-direction: column; align-items: flex-start; }
+  .site-footer__bottom { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+  .site-footer__bottom-links { flex-wrap: wrap; gap: var(--space-sm); }
 
-  /* Pages secondaires mobile */
+  /* === Pages secondaires : tarifs === */
   .formules-grid { grid-template-columns: 1fr; }
-  /* Tarifs : sur mobile on bascule en deux lignes (nom + sous-titre puis durée/prix) */
+  .formules-grid .formule-card { padding: 0; }
+  .formules-grid .formule-card > *:not(.formule-card__image):not(.formule-badge) {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
   .tarifs-row {
     grid-template-columns: 1fr auto;
     column-gap: var(--space-md);
@@ -2151,9 +2214,126 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .tarifs-row__name strong { font-size: 1.15rem; }
   .tarifs-row__duration { grid-column: 1; }
   .tarifs-row__price { grid-column: 2; font-size: 1.25rem; }
-  .timeline { padding-left: var(--space-lg); }
-  .timeline-item { grid-template-columns: 60px 1fr; gap: var(--space-sm); }
+  .services-grid { grid-template-columns: 1fr; }
+
+  /* === Massage detail === */
+  .massage-detail__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .massage-detail__image { aspect-ratio: 16 / 9; }
+  .massage-detail--alt .massage-detail__content { order: -1; }
+  /* Désactive l'animation de reveal sur mobile (évite les éléments bloqués à opacity:0) */
+  .massage-detail__image,
+  .massage-detail__content {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .massage-detail__benefits li {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ci-grid { grid-template-columns: 1fr; }
+  .ci-block { padding: var(--space-md); }
+  .massage-detail__pricing { flex-direction: column; }
+  .pricing-pill { justify-content: space-between; }
+
+  /* === Contre-indications === */
+  .avantapres-grid { grid-template-columns: 1fr; }
+
+  /* === À propos === */
+  .about-inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .about-image { aspect-ratio: 16 / 9; }
+  .timeline { padding-left: var(--space-lg); margin-top: var(--space-lg); }
+  .timeline-item { grid-template-columns: 56px 1fr; gap: var(--space-sm); margin-bottom: var(--space-lg); }
+  .timeline-item__year { font-size: var(--fs-md); }
+  .timeline-item__content h3 { font-size: var(--fs-base); }
+
+  /* === Contact === */
+  .contact-quick { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .contact-quick__map { height: 280px; aspect-ratio: unset; }
+  .contact-page__grid { grid-template-columns: 1fr; }
+  .contact-page__map { height: 280px; position: static; }
+  .acces-grid { grid-template-columns: 1fr; }
+  .acces-item { padding: var(--space-md); }
+
+  /* === Avis === */
   .testimonials-grid--full { grid-template-columns: 1fr; }
+
+  /* === Légales === */
+  .legal-container { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .legal-nav { position: static; }
+  .legal-block { padding-bottom: var(--space-xl); margin-bottom: var(--space-xl); }
+
+  /* === CTA centré === */
+  .cta-centered__actions { flex-direction: column; align-items: stretch; }
+  .cta-centered__actions .btn { width: 100%; justify-content: center; }
+
+  /* === Philosophie (À propos) === */
+  .philosophy .philosophy__content blockquote { font-size: var(--fs-base); }
+}
+
+/* ----- Très petits écrans (< 480px) ----- */
+@media (max-width: 480px) {
+  :root {
+    --space-xl:  2.5rem;
+    --space-2xl: 3.5rem;
+  }
+
+  /* Typographie réduite */
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .page-hero h1 { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .hero__inner { padding: var(--space-lg) 0 var(--space-xl); }
+  .hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
+
+  /* Header logo : on masque la tagline / sous-titre pour gagner de la place */
+  .logo__tagline, .logo__sub { display: none; }
+  .logo__img { height: 44px; }
+
+  /* Section header plus compact */
+  .section-header { gap: var(--space-xs); margin-bottom: var(--space-md); }
+
+  /* Tarifs row : tout en colonne */
+  .tarifs-row { grid-template-columns: 1fr; gap: var(--space-3xs); }
+  .tarifs-row__name,
+  .tarifs-row__duration,
+  .tarifs-row__price { grid-column: 1 / -1; }
+  .tarifs-row__duration { text-align: left; }
+  .tarifs-row__price { text-align: left; font-size: 1.4rem; }
+
+  /* Timeline : on masque la colonne année, on la met en badge */
+  .timeline { padding-left: var(--space-md); }
+  .timeline-item { grid-template-columns: 1fr; gap: var(--space-xs); }
+  .timeline-item__year {
+    font-size: var(--fs-sm);
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  /* Formule card sur mobile : padding réduit */
+  .formules-grid .formule-card > *:not(.formule-card__image):not(.formule-badge) {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+  .formules-grid .formule-card .formule-card__name { font-size: 1.4rem; }
+
+  /* Google aggregate */
+  .google-aggregate { padding: var(--space-sm); }
+  .google-aggregate__score { font-size: 2.8rem; }
+
+  /* Boutons FAB : texte légèrement plus petit */
+  .fab-reserve { font-size: var(--fs-xs); padding: 12px var(--space-md); }
+
+  /* Page hero compacte */
+  .page-hero { min-height: 220px; }
+  .page-hero--compact { min-height: 160px; padding: var(--space-lg) 0; }
+
+  /* Pricing pills en colonne */
+  .massage-detail__pricing { flex-direction: column; }
+
+  /* About notice */
+  .about-notice { padding: var(--space-xs) var(--space-sm); }
+
+  /* Mentions légales : pas de sidebar */
+  .legal-block h2 { font-size: var(--fs-lg); }
 }
 
 /* ----- Reduced motion -----

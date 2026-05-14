@@ -502,3 +502,89 @@
   });
 
 })();
+
+
+/* ─────────────────────────────────────────────────
+ * RGPD – Bannière cookies & Google Maps
+ * ───────────────────────────────────────────────── */
+(function () {
+  'use strict';
+
+  var COOKIE_KEY = 'anicha_cookie_consent'; // 'accepted' | 'refused'
+
+  /* ---------- Bannière ---------- */
+  function buildBanner() {
+    var b = document.createElement('div');
+    b.className = 'cookie-banner';
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-label', 'Gestion des cookies');
+    b.innerHTML =
+      '<p class="cookie-banner__text">' +
+        '<strong>Cookies &amp; confidentialité</strong> — ' +
+        'Ce site utilise Google Maps pour afficher notre localisation. ' +
+        'En acceptant, vous autorisez le transfert de données vers Google. ' +
+        '<a href="mentions-legales.html#confidentialite">En savoir plus</a>.' +
+      '</p>' +
+      '<div class="cookie-banner__actions">' +
+        '<button class="cookie-btn cookie-btn--refuse" id="cookie-refuse">Refuser</button>' +
+        '<button class="cookie-btn cookie-btn--accept" id="cookie-accept">Accepter</button>' +
+      '</div>';
+    document.body.appendChild(b);
+
+    // Apparition différée pour éviter le flash au chargement
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { b.classList.add('is-visible'); });
+    });
+
+    document.getElementById('cookie-accept').addEventListener('click', function () {
+      saveConsent('accepted');
+      b.classList.remove('is-visible');
+      setTimeout(function () { b.remove(); }, 400);
+      activateMap();
+    });
+
+    document.getElementById('cookie-refuse').addEventListener('click', function () {
+      saveConsent('refused');
+      b.classList.remove('is-visible');
+      setTimeout(function () { b.remove(); }, 400);
+    });
+  }
+
+  function saveConsent(val) {
+    try { localStorage.setItem(COOKIE_KEY, val); } catch(e) {}
+  }
+
+  function getConsent() {
+    try { return localStorage.getItem(COOKIE_KEY); } catch(e) { return null; }
+  }
+
+  /* ---------- Google Maps ---------- */
+  window.loadMap = function () {
+    activateMap();
+    saveConsent('accepted');
+    // Cacher la bannière si elle est encore visible
+    var b = document.querySelector('.cookie-banner');
+    if (b) { b.classList.remove('is-visible'); setTimeout(function(){ b.remove(); }, 400); }
+  };
+
+  function activateMap() {
+    var consent = document.getElementById('map-consent');
+    var iframe   = document.getElementById('map-iframe');
+    if (!iframe) return;
+    iframe.src = iframe.dataset.src;
+    iframe.style.display = 'block';
+    if (consent) consent.remove();
+  }
+
+  /* ---------- Init ---------- */
+  var consent = getConsent();
+  if (consent === 'accepted') {
+    // Déjà accepté : charger Maps directement, pas de bannière
+    document.addEventListener('DOMContentLoaded', activateMap);
+  } else if (consent === null) {
+    // Première visite : afficher la bannière
+    document.addEventListener('DOMContentLoaded', buildBanner);
+  }
+  // Si refused : rien à faire, la carte reste masquée
+
+})();

@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact & accès – Anicha Espace Bien-Être · Nîmes</title>
   <meta name="description" content="Anicha Espace Bien-Être, 9 rue des Chapeliers, 30000 Nîmes. Sur rendez-vous, lundi au vendredi 10h–18h. Tél : 06 50 67 20 80." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -121,14 +118,23 @@
           </div>
         </div>
 
-        <!-- Carte -->
-        <div class="contact-page__map">
+        <!-- Carte (chargée uniquement après consentement cookies) -->
+        <div class="contact-page__map" id="map-container">
+          <div class="map-consent" id="map-consent">
+            <div class="map-consent__inner">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <p>Cette carte est fournie par Google Maps.<br>Son affichage implique le transfert de données vers Google.</p>
+              <button class="btn btn--primary btn--small" onclick="loadMap()">Afficher la carte</button>
+            </div>
+          </div>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d359.7431903510998!2d4.3609169!3d43.8362275!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b42dbad566a245%3A0x153d3b7b6a628de!2sANICHA%20ESPACE%20BIEN%20%C3%8ATRE%20NIMES!5e0!3m2!1sfr!2sfr"
+            id="map-iframe"
+            data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d359.7431903510998!2d4.3609169!3d43.8362275!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b42dbad566a245%3A0x153d3b7b6a628de!2sANICHA%20ESPACE%20BIEN%20%C3%8ATRE%20NIMES!5e0!3m2!1sfr!2sfr"
             title="Anicha Espace Bien-Être – 9 rue des Chapeliers, Nîmes"
             allowfullscreen
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
+            style="display:none"
           ></iframe>
         </div>
 

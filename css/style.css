@@ -617,11 +617,7 @@ p { max-width: 65ch; }
 .card:hover .card__number { color: rgba(200,146,10,.18); }
 
 .card__name-thai {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--fs-sm);
-  color: var(--color-primary);
-  letter-spacing: 0.04em;
+  display: none;
 }
 .card__title {
   font-family: var(--font-serif);

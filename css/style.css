@@ -4489,7 +4489,7 @@ h2 { letter-spacing: -0.02em; }
 .formule-card__label {
   display: block;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -4497,11 +4497,11 @@ h2 { letter-spacing: -0.02em; }
   padding-left: var(--space-md);
   padding-right: var(--space-md);
   padding-top: var(--space-md);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 .formule-card__tagline {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-style: italic;
   color: #4A4035;
   margin: 0 0 var(--space-xs);
@@ -4511,5 +4511,5 @@ h2 { letter-spacing: -0.02em; }
 }
 .formule-card > .formule-card__name {
   padding-top: var(--space-xs);
-  font-size: 2rem;
+  font-size: 2.4rem;
 }

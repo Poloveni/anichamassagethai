@@ -3351,13 +3351,13 @@ h2 { letter-spacing: -0.02em; }
   text-align: left;
 }
 .welcome__call em {
-  color: var(--color-primary, #C49A35);
+  color: #4A4035;
   font-style: italic;
 }
 .welcome__call strong {
   display: inline-block;
   margin-top: var(--space-2xs);
-  color: var(--color-primary, #C49A35);
+  color: #4A4035;
   font-weight: 600;
 }
 

@@ -302,6 +302,7 @@
   if (counters.length && 'IntersectionObserver' in window) {
     const animateCount = (el) => {
       const target = parseInt(el.dataset.countTo, 10);
+      const prefix = el.dataset.countPrefix || '';
       const suffix = el.dataset.countSuffix || '';
       const dur = 1400;
       const start = performance.now();
@@ -309,9 +310,9 @@
         const t = Math.min(1, (now - start) / dur);
         // Easing easeOutCubic
         const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(target * eased) + suffix;
+        el.textContent = prefix + Math.round(target * eased) + suffix;
         if (t < 1) requestAnimationFrame(tick);
-        else el.textContent = target + suffix;
+        else el.textContent = prefix + target + suffix;
       };
       requestAnimationFrame(tick);
     };

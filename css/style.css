@@ -345,7 +345,7 @@ p { max-width: 65ch; }
 /* Sous-titre "Massage thaï traditionnel" */
 .logo__sub {
   font-family: var(--font-serif);
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-style: italic;
   font-weight: 500;
   color: #4A4035;
@@ -358,7 +358,7 @@ p { max-width: 65ch; }
   .logo__img      { height: 52px; }
   .logo__name     { font-size: 1.35rem; }
   .logo__tagline  { font-size: 0.62rem; letter-spacing: 0.18em; }
-  .logo__sub      { font-size: 0.75rem; }
+  .logo__sub      { font-size: 0.88rem; }
 }
 
 /* Nav est maintenant un sibling du header dans le DOM (hors <header>).

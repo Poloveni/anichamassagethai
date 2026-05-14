@@ -4586,3 +4586,16 @@ h2 { letter-spacing: -0.02em; }
     padding: var(--space-md);
   }
 }
+
+/* ── Tarifs subheadings ───────────────────────── */
+.tarifs-subheading {
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+.tarifs-subheading .eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.tarifs-row--featured {
+  background: linear-gradient(135deg, #FEF8E8 0%, #F9EDCC 100%);
+}

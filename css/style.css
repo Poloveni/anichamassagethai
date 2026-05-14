@@ -339,16 +339,16 @@ p { max-width: 65ch; }
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #4A4035;
   margin-top: 4px;
 }
 /* Sous-titre "Massage thaï traditionnel" */
 .logo__sub {
   font-family: var(--font-serif);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-style: italic;
   font-weight: 500;
-  color: var(--color-primary);
+  color: #4A4035;
   margin-top: 1px;
   letter-spacing: 0.04em;
 }
@@ -358,7 +358,7 @@ p { max-width: 65ch; }
   .logo__img      { height: 52px; }
   .logo__name     { font-size: 1.35rem; }
   .logo__tagline  { font-size: 0.62rem; letter-spacing: 0.18em; }
-  .logo__sub      { font-size: 0.62rem; }
+  .logo__sub      { font-size: 0.75rem; }
 }
 
 /* Nav est maintenant un sibling du header dans le DOM (hors <header>).

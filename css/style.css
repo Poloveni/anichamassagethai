@@ -3414,9 +3414,9 @@ h2 { letter-spacing: -0.02em; }
     );
   }
 
-  /* Contenu texte */
+  /* Contenu texte — padding-bottom suffisant pour passer au-dessus des FABs fixes */
   .hero__inner {
-    padding-bottom: var(--space-2xl);
+    padding-bottom: calc(var(--space-2xl) + 80px); /* 80px = hauteur FAB + marge */
     padding-top: calc(var(--header-height) + var(--space-md));
     max-width: 100%;
   }
@@ -3451,8 +3451,11 @@ h2 { letter-spacing: -0.02em; }
     font-size: var(--fs-sm);
   }
 
-  /* Liseré doré : masqué sur mobile (trop encombrant) */
+  /* Liseré doré : masqué sur mobile */
   .hero__decor { display: none; }
+
+  /* Scroll indicator : masqué sur mobile (superposition avec les FABs) */
+  .scroll-indicator { display: none; }
 }
 
 /* Animation Ken Burns version mobile — très subtile, sans zoom */

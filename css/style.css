@@ -4501,13 +4501,16 @@ h2 { letter-spacing: -0.02em; }
 }
 .formule-card__tagline {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-style: italic;
   color: #4A4035;
   margin: 0 0 var(--space-xs);
   line-height: 1.4;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .formule-card > .formule-card__name {
   padding-top: var(--space-xs);

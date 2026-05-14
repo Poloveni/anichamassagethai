@@ -4482,3 +4482,25 @@ h2 { letter-spacing: -0.02em; }
     text-align: center;
   }
 }
+
+/* =============================================
+   FORMULE CARD — label & tagline
+   ============================================= */
+.formule-card__label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+.formule-card__tagline {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #4A4035;
+  margin: 0 0 var(--space-xs);
+  line-height: 1.4;
+}

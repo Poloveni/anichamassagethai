@@ -4505,12 +4505,10 @@ h2 { letter-spacing: -0.02em; }
   font-style: italic;
   color: #4A4035;
   margin: 0 0 var(--space-xs);
-  line-height: 1.4;
+  line-height: 1.5;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-wrap: balance;
 }
 .formule-card > .formule-card__name {
   padding-top: var(--space-xs);

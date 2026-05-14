@@ -1608,25 +1608,31 @@ div.philosophy {
 /* Durée */
 .tarifs-row__duration {
   font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: var(--color-secondary);
+  color: var(--color-text);
+  background: rgba(200,146,10,.10);
+  border: 1px solid rgba(200,146,10,.25);
+  border-radius: 999px;
+  padding: 4px 12px;
   white-space: nowrap;
-  text-align: right;
+  text-align: center;
+  align-self: center;
 }
 
 /* Prix */
 .tarifs-row__price {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.55rem;
+  font-weight: 600;
   font-style: italic;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   letter-spacing: 0.01em;
   white-space: nowrap;
   text-align: right;
+  align-self: center;
 }
 
 /* Léger highlight au survol (ligne entière) */

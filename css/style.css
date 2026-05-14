@@ -3366,3 +3366,478 @@ h2 { letter-spacing: -0.02em; }
   .welcome__text p { font-size: var(--fs-base); text-align: center; }
   .welcome__call { text-align: center; }
 }
+
+/* ============================================================
+   25. AMÉLIORATIONS MOBILES — POLISH VISUEL
+   ============================================================ */
+
+/* ── Hero homepage : plein écran sur mobile ─────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100dvh;
+    min-height: 100vh; /* fallback */
+    align-items: flex-end;
+  }
+  .hero__inner {
+    padding-bottom: var(--space-3xl);
+    padding-top: calc(var(--header-height) + var(--space-lg));
+    max-width: 100%;
+  }
+  .hero__overlay {
+    background: linear-gradient(
+      170deg,
+      rgba(20,10,0,.55) 0%,
+      rgba(20,10,0,.82) 60%,
+      rgba(10,5,0,.95) 100%
+    );
+  }
+  /* Parallax désactivé sur mobile pour de meilleures performances */
+  .hero__bg { transform: none !important; }
+
+  /* Hero title plus lisible */
+  .hero h1 {
+    font-size: clamp(2.2rem, 9vw, 3.5rem);
+    line-height: 1.08;
+    margin-bottom: var(--space-sm);
+  }
+  .hero__subtitle {
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-md);
+    opacity: .88;
+  }
+  .hero__actions .btn {
+    min-height: 52px;
+    font-size: var(--fs-sm);
+  }
+}
+
+/* ── Burger : barres plus épaisses et plus visibles ─────────── */
+@media (max-width: 768px) {
+  .menu-toggle__bar,
+  .menu-toggle__bar::before,
+  .menu-toggle__bar::after {
+    height: 2px;
+    width: 22px;
+  }
+  .menu-toggle__bar::before { top: -7px; }
+  .menu-toggle__bar::after  { top:  7px; }
+}
+
+/* ── Drawer : liens touch-friendly & page courante ──────────── */
+@media (max-width: 768px) {
+  .nav__list .nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px var(--space-md);
+    min-height: 56px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.15s;
+  }
+  .nav__list .nav__link::after {
+    content: "";
+    display: block;
+    width: 6px; height: 6px;
+    border-right: 1.5px solid var(--color-primary);
+    border-top: 1.5px solid var(--color-primary);
+    transform: rotate(45deg);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .nav__list .nav__link:active,
+  .nav__list .nav__link[aria-current="page"] {
+    background-color: rgba(200,146,10,.07);
+    color: var(--color-primary);
+  }
+  .nav__list .nav__link[aria-current="page"]::after { opacity: 1; }
+
+  .nav__cta { padding: var(--space-md) var(--space-md) var(--space-lg); }
+  .nav__cta .btn { min-height: 52px; font-size: var(--fs-sm); }
+}
+
+/* ── Page hero secondaire : fond sombre bien contrasté ──────── */
+@media (max-width: 768px) {
+  .page-hero {
+    min-height: 52dvh;
+    min-height: 52vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-xl) 0 var(--space-xl);
+    padding-top: calc(var(--header-height) + var(--space-lg));
+  }
+  .page-hero__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(10,5,0,.55) 0%,
+      rgba(10,5,0,.80) 100%
+    ) !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(1.8rem, 7.5vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: var(--space-sm);
+  }
+  .page-hero p { max-width: 90%; }
+  .page-hero .eyebrow { margin-bottom: var(--space-xs); }
+}
+
+/* ── Boutons : cibles de 48 px minimum partout ──────────────── */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 48px;
+    padding: 13px var(--space-md);
+    font-size: var(--fs-sm);
+  }
+  .btn--small { min-height: 40px; padding: 10px var(--space-sm); }
+
+  /* Feedback tactile */
+  .btn:active { opacity: .82; transform: scale(.97); }
+}
+
+/* ── Inputs et select : cibles 48 px ───────────────────────── */
+@media (max-width: 768px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px var(--space-md);
+    font-size: 16px; /* évite le zoom auto iOS */
+    min-height: 48px;
+    border-radius: var(--radius);
+  }
+  .form-group textarea { min-height: 110px; }
+
+  /* Formulaire de contact : moins de padding sur petits écrans */
+  .contact-form {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    margin: 0 calc(-1 * var(--space-sm));
+    max-width: calc(100% + var(--space-sm) * 2);
+  }
+  .contact-form__header { margin-bottom: var(--space-lg); }
+  .contact-form__header h2 { font-size: var(--fs-lg); }
+
+  .form-submit .btn { min-height: 52px; }
+}
+
+/* ── Section header : eyebrow + trait dorés ─────────────────── */
+@media (max-width: 768px) {
+  .section-header { text-align: center; }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+  .section-header h2 { font-size: clamp(1.6rem, 6.5vw, 2.2rem); }
+  .section-header .lead {
+    font-size: var(--fs-sm);
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ── Cards : feedback tactile ───────────────────────────────── */
+@media (max-width: 768px) {
+  .card:active,
+  .formule-card:active {
+    transform: scale(.98);
+    box-shadow: none;
+  }
+  .card { border-radius: var(--radius); }
+}
+
+/* ── Tarifs : rangées plus aérées et colorées ───────────────── */
+@media (max-width: 768px) {
+  .tarifs-row {
+    padding: var(--space-md) 0;
+    row-gap: var(--space-3xs);
+  }
+  .tarifs-row__name strong { font-size: 1.1rem; }
+  .tarifs-row__name span  { font-size: var(--fs-xs); }
+  .tarifs-row__duration   { font-size: 10px; letter-spacing: 0.12em; }
+  .tarifs-row__price      { font-size: 1.15rem; color: var(--color-primary); }
+
+  .tarifs-disclaimer,
+  .tarifs-note {
+    font-size: var(--fs-xs);
+    text-align: center;
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(200,146,10,.06);
+    border-radius: var(--radius);
+    margin-top: var(--space-lg);
+  }
+
+  /* Formule card image plus haute */
+  .formule-card__image { aspect-ratio: 16 / 7; }
+  .formule-card__name { font-size: 1.3rem; }
+  .formule-card__price {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+}
+
+/* ── Services grid (tarifs) : items avec icône ──────────────── */
+@media (max-width: 768px) {
+  .service-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .service-item:last-child { border-bottom: none; }
+  .service-item svg {
+    width: 28px; height: 28px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-primary);
+  }
+  .service-item h3 { font-size: var(--fs-base); margin: 0 0 var(--space-3xs); }
+  .service-item p  { font-size: var(--fs-sm); margin: 0; color: var(--color-muted); }
+}
+
+/* ── À propos : image plein-cadre ───────────────────────────── */
+@media (max-width: 768px) {
+  .about-image { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  .about-content blockquote {
+    font-size: var(--fs-base);
+    padding-left: var(--space-md);
+    border-left-width: 2px;
+  }
+  .certif-list { gap: var(--space-xs); }
+  .certif-item { padding: var(--space-xs) var(--space-sm); font-size: var(--fs-xs); }
+}
+
+/* ── Footer mobile raffiné ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .site-footer {
+    padding-top: var(--space-xl);
+  }
+  .site-footer__brand p {
+    font-size: var(--fs-sm);
+    max-width: 28ch;
+  }
+  .site-footer__grid h4 {
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-xs);
+  }
+  .site-footer__grid ul li {
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-3xs);
+  }
+  .site-footer__bottom {
+    padding-top: var(--space-md);
+    font-size: var(--fs-xs);
+  }
+  .site-footer__notice {
+    font-size: 11px;
+    text-align: center;
+    padding: var(--space-xs) 0;
+  }
+  .socials { gap: var(--space-sm); }
+  .socials a {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+  }
+}
+
+/* ── CTA centré : boutons plein-largeur ─────────────────────── */
+@media (max-width: 768px) {
+  .cta-centered { text-align: center; }
+  .cta-centered p { font-size: var(--fs-sm); max-width: 88%; margin: 0 auto var(--space-md); }
+  .cta-centered__actions { gap: var(--space-sm); }
+  .cta-centered__actions .btn { min-height: 52px; }
+}
+
+/* ── FAB stack : mieux positionné ──────────────────────────── */
+@media (max-width: 768px) {
+  .fab-stack {
+    bottom: env(safe-area-inset-bottom, var(--space-md));
+    right: var(--space-sm);
+  }
+  .fab-whatsapp { width: 50px; height: 50px; }
+  .fab-whatsapp svg { width: 24px; height: 24px; }
+}
+
+/* ── Avis & galerie ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .testimonial {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+  }
+  .testimonial__text {
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+  }
+}
+
+/* ── Drawer : liens touch-friendly & page courante */
+@media (max-width: 768px) {
+  .nav__list .nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px var(--space-md);
+    min-height: 56px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.15s;
+  }
+  .nav__list .nav__link::after {
+    content: "";
+    display: block;
+    width: 6px; height: 6px;
+    border-right: 1.5px solid var(--color-primary);
+    border-top: 1.5px solid var(--color-primary);
+    transform: rotate(45deg);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .nav__list .nav__link:active,
+  .nav__list .nav__link[aria-current="page"] {
+    background-color: rgba(200,146,10,.07);
+    color: var(--color-primary);
+  }
+  .nav__list .nav__link[aria-current="page"]::after { opacity: 1; }
+  .nav__cta { padding: var(--space-md) var(--space-md) var(--space-lg); }
+  .nav__cta .btn { min-height: 52px; }
+}
+
+/* Page hero secondaire */
+@media (max-width: 768px) {
+  .page-hero {
+    min-height: 52dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(var(--header-height) + var(--space-lg));
+  }
+  .page-hero h1 { font-size: clamp(1.8rem, 7.5vw, 2.8rem); line-height: 1.1; }
+  .page-hero p  { max-width: 90%; }
+}
+
+/* Boutons 48px minimum */
+@media (max-width: 768px) {
+  .btn { min-height: 48px; padding: 13px var(--space-md); font-size: var(--fs-sm); }
+  .btn--small { min-height: 40px; padding: 10px var(--space-sm); }
+  .btn:active { opacity: .82; transform: scale(.97); }
+}
+
+/* Inputs : font-size 16px evite le zoom iOS */
+@media (max-width: 768px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px var(--space-md);
+    font-size: 16px;
+    min-height: 48px;
+  }
+  .form-group textarea { min-height: 110px; }
+  .contact-form {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    margin: 0 calc(-1 * var(--space-sm));
+  }
+  .contact-form__header { margin-bottom: var(--space-md); }
+  .contact-form__header h2 { font-size: var(--fs-lg); }
+  .form-submit .btn { min-height: 52px; }
+}
+
+/* Section header */
+@media (max-width: 768px) {
+  .section-header { text-align: center; }
+  .section-header h2 { font-size: clamp(1.6rem, 6.5vw, 2.2rem); }
+  .section-header .lead {
+    font-size: var(--fs-sm);
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Cards feedback tactile */
+@media (max-width: 768px) {
+  .card:active, .formule-card:active { transform: scale(.98); }
+}
+
+/* Tarifs */
+@media (max-width: 768px) {
+  .tarifs-row { padding: var(--space-md) 0; }
+  .tarifs-row__name strong { font-size: 1.1rem; }
+  .tarifs-row__name span   { font-size: var(--fs-xs); }
+  .tarifs-row__price       { font-size: 1.15rem; color: var(--color-primary); }
+  .tarifs-disclaimer, .tarifs-note {
+    font-size: var(--fs-xs);
+    text-align: center;
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(200,146,10,.06);
+    border-radius: var(--radius);
+    margin-top: var(--space-lg);
+  }
+  .formule-card__image { aspect-ratio: 16 / 7; }
+  .formule-card__name  { font-size: 1.3rem; }
+  .formule-card__price { font-size: 1.5rem; color: var(--color-primary); }
+}
+
+/* Services grid - tarifs - layout row sur mobile */
+@media (max-width: 768px) {
+  .service-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .service-item:last-child { border-bottom: none; }
+  .service-item svg { width: 28px; height: 28px; flex-shrink: 0; color: var(--color-primary); }
+  .service-item h3  { font-size: var(--fs-base); margin: 0 0 2px; }
+  .service-item p   { font-size: var(--fs-sm); margin: 0; }
+}
+
+/* Footer */
+@media (max-width: 768px) {
+  .site-footer { padding-top: var(--space-xl); }
+  .site-footer__brand p    { font-size: var(--fs-sm); }
+  .site-footer__grid h4    { font-size: var(--fs-sm); margin-bottom: var(--space-xs); }
+  .site-footer__grid ul li { font-size: var(--fs-sm); }
+  .site-footer__notice     { font-size: 11px; text-align: center; }
+  .socials a { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* CTA centree */
+@media (max-width: 768px) {
+  .cta-centered p { font-size: var(--fs-sm); max-width: 88%; margin: 0 auto var(--space-md); }
+  .cta-centered__actions .btn { min-height: 52px; }
+}
+
+/* FAB WhatsApp */
+@media (max-width: 768px) {
+  .fab-whatsapp { width: 50px; height: 50px; }
+  .fab-whatsapp svg { width: 24px; height: 24px; }
+}
+
+/* Avis */
+@media (max-width: 768px) {
+  .testimonial { padding: var(--space-md); }
+  .testimonial__text { font-size: var(--fs-sm); line-height: 1.6; }
+}
+
+/* Safe area iPhone X+ */
+@supports (padding: env(safe-area-inset-top)) {
+  @media (max-width: 768px) {
+    .site-header  { padding-top: env(safe-area-inset-top); }
+    .menu-toggle  { top: env(safe-area-inset-top); }
+    .nav          { top: calc(var(--header-height) + env(safe-area-inset-top)); }
+    .fab-stack    { bottom: max(var(--space-md), env(safe-area-inset-bottom)); }
+  }
+}

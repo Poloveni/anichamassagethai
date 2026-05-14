@@ -399,10 +399,18 @@ p { max-width: 65ch; }
   position: fixed;
   top: 0;
   right: var(--space-md);
-  width: 44px;
+  width: 48px;
   height: var(--header-height);
   align-items: center; justify-content: center;
-  z-index: 201;
+  z-index: 999;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .menu-toggle__bar {
   display: block;
@@ -2153,8 +2161,11 @@ a.contact-block__value:hover { color: var(--color-primary); }
   .nav {
     position: fixed;
     top: var(--header-height);
-    left: 0; right: 0; bottom: 0;
-    height: auto;        /* réinitialise height:var(--header-height) hérité du desktop */
+    left: 0; right: 0;
+    /* dvh = dynamic viewport height (gère la barre Safari iOS).
+       Fallback sur 100vh pour navigateurs plus anciens. */
+    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -2162,9 +2173,11 @@ a.contact-block__value:hover { color: var(--color-primary); }
     transform: translateX(100%);
     transition: transform 350ms ease;
     pointer-events: none;
-    overflow: hidden;
-    z-index: 200;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 998;
     border-top: 1px solid var(--color-border);
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Ouverture */

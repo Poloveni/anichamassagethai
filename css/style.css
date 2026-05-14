@@ -481,9 +481,9 @@ p { max-width: 65ch; }
   position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(
     105deg,
-    rgba(28,16,0,.65) 0%,
-    rgba(28,16,0,.42) 50%,
-    rgba(28,16,0,.10) 100%
+    rgba(28,16,0,.45) 0%,
+    rgba(28,16,0,.28) 50%,
+    rgba(28,16,0,.05) 100%
   );
 }
 
@@ -1292,9 +1292,9 @@ div.philosophy {
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(42, 36, 30, 0.45) 0%,
-    rgba(42, 36, 30, 0.38) 60%,
-    rgba(42, 36, 30, 0.55) 100%
+    rgba(42, 36, 30, 0.25) 0%,
+    rgba(42, 36, 30, 0.22) 60%,
+    rgba(42, 36, 30, 0.38) 100%
   );
   pointer-events: none;
 }
@@ -3404,9 +3404,9 @@ h2 { letter-spacing: -0.02em; }
   .hero__overlay {
     background: linear-gradient(
       to top,
-      rgba(12, 6, 0, 0.82) 0%,
-      rgba(12, 6, 0, 0.50) 45%,
-      rgba(12, 6, 0, 0.10) 100%
+      rgba(12, 6, 0, 0.65) 0%,
+      rgba(12, 6, 0, 0.32) 45%,
+      rgba(12, 6, 0, 0.05) 100%
     );
   }
 
@@ -3521,8 +3521,8 @@ h2 { letter-spacing: -0.02em; }
   .page-hero__overlay {
     background: linear-gradient(
       to bottom,
-      rgba(10,5,0,.30) 0%,
-      rgba(10,5,0,.58) 100%
+      rgba(10,5,0,.15) 0%,
+      rgba(10,5,0,.40) 100%
     ) !important;
   }
   .page-hero h1 {

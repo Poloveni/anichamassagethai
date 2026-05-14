@@ -2837,6 +2837,11 @@ h2 { letter-spacing: -0.02em; }
   color: #FFFFFF;
   box-shadow: var(--shadow-lg);
   transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+  /* Positionné en bas à GAUCHE, indépendamment du fab-stack */
+  position: fixed;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  right: auto;
 }
 .fab-whatsapp:hover {
   transform: translateY(-2px) scale(1.05);
@@ -3663,13 +3668,17 @@ h2 { letter-spacing: -0.02em; }
   .cta-centered__actions .btn { min-height: 52px; }
 }
 
-/* ── FAB stack : mieux positionné ──────────────────────────── */
+/* ── FAB stack (Réserver) + WhatsApp séparés ────────────────── */
 @media (max-width: 768px) {
   .fab-stack {
-    bottom: env(safe-area-inset-bottom, var(--space-md));
+    bottom: var(--space-md);
     right: var(--space-sm);
   }
-  .fab-whatsapp { width: 50px; height: 50px; }
+  .fab-whatsapp {
+    width: 50px; height: 50px;
+    left: var(--space-sm);
+    bottom: var(--space-md);
+  }
   .fab-whatsapp svg { width: 24px; height: 24px; }
 }
 
@@ -3826,9 +3835,14 @@ h2 { letter-spacing: -0.02em; }
   .cta-centered__actions .btn { min-height: 52px; }
 }
 
-/* FAB WhatsApp */
+/* FAB WhatsApp — bas gauche */
 @media (max-width: 768px) {
-  .fab-whatsapp { width: 50px; height: 50px; }
+  .fab-whatsapp {
+    width: 50px; height: 50px;
+    left: var(--space-sm);
+    right: auto;
+    bottom: var(--space-md);
+  }
   .fab-whatsapp svg { width: 24px; height: 24px; }
 }
 
@@ -3845,5 +3859,6 @@ h2 { letter-spacing: -0.02em; }
     .menu-toggle  { top: env(safe-area-inset-top); }
     .nav          { top: calc(var(--header-height) + env(safe-area-inset-top)); }
     .fab-stack    { bottom: max(var(--space-md), env(safe-area-inset-bottom)); }
+    .fab-whatsapp { bottom: max(var(--space-md), env(safe-area-inset-bottom)); left: var(--space-sm); }
   }
 }

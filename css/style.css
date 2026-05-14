@@ -3386,40 +3386,79 @@ h2 { letter-spacing: -0.02em; }
 @media (max-width: 768px) {
   .hero {
     min-height: 100dvh;
-    min-height: 100vh; /* fallback */
+    min-height: 100vh;
     align-items: flex-end;
   }
-  .hero__inner {
-    padding-bottom: var(--space-3xl);
-    padding-top: calc(var(--header-height) + var(--space-lg));
-    max-width: 100%;
+
+  /* Supprime le débordement 25% prévu pour le parallax desktop
+     → la vidéo occupe exactement le cadre, sans crop forcé       */
+  .hero__bg {
+    top: 0;
+    bottom: 0;
+    transform: none !important;
   }
+
+  /* Ken Burns très discret sur mobile : dézoome au lieu de zoomer */
+  .hero__video {
+    animation: kenburns-mobile 32s ease-in-out infinite alternate;
+    object-position: center 30%; /* cadre la zone intéressante */
+  }
+
+  /* Overlay : pente depuis le bas (texte ancré en bas) */
   .hero__overlay {
     background: linear-gradient(
-      170deg,
-      rgba(20,10,0,.55) 0%,
-      rgba(20,10,0,.82) 60%,
-      rgba(10,5,0,.95) 100%
+      to top,
+      rgba(12, 6, 0, 0.97) 0%,
+      rgba(12, 6, 0, 0.72) 45%,
+      rgba(12, 6, 0, 0.20) 100%
     );
   }
-  /* Parallax désactivé sur mobile pour de meilleures performances */
-  .hero__bg { transform: none !important; }
 
-  /* Hero title plus lisible */
+  /* Contenu texte */
+  .hero__inner {
+    padding-bottom: var(--space-2xl);
+    padding-top: calc(var(--header-height) + var(--space-md));
+    max-width: 100%;
+  }
+
+  /* Eyebrow + titre */
+  .hero .eyebrow { margin-bottom: var(--space-sm); }
   .hero h1 {
-    font-size: clamp(2.2rem, 9vw, 3.5rem);
-    line-height: 1.08;
+    font-size: clamp(2.1rem, 8.5vw, 3rem);
+    line-height: 1.1;
     margin-bottom: var(--space-sm);
   }
+  .hero h1 br { display: none; } /* Coupe naturelle sur petits écrans */
+
+  /* Sous-titre */
   .hero__subtitle {
     font-size: var(--fs-sm);
-    margin-bottom: var(--space-md);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
     opacity: .88;
+    max-width: 100%;
+  }
+
+  /* Boutons plein-largeur, bien espacés */
+  .hero__actions {
+    flex-direction: column;
+    gap: var(--space-xs);
   }
   .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
     min-height: 52px;
     font-size: var(--fs-sm);
   }
+
+  /* Liseré doré : masqué sur mobile (trop encombrant) */
+  .hero__decor { display: none; }
+}
+
+/* Animation Ken Burns version mobile — très subtile, sans zoom */
+@keyframes kenburns-mobile {
+  0%   { transform: scale(1.00) translate(0,    0);    }
+  100% { transform: scale(1.03) translate(0.5%, 0.5%); }
 }
 
 /* ── Burger : barres plus épaisses et plus visibles ─────────── */
@@ -3804,6 +3843,7 @@ h2 { letter-spacing: -0.02em; }
 }
 
 /* Services grid - tarifs - layout row sur mobile */
+/* Services grid - tarifs */
 @media (max-width: 768px) {
   .service-item {
     display: flex;
@@ -3817,6 +3857,11 @@ h2 { letter-spacing: -0.02em; }
   .service-item svg { width: 28px; height: 28px; flex-shrink: 0; color: var(--color-primary); }
   .service-item h3  { font-size: var(--fs-base); margin: 0 0 2px; }
   .service-item p   { font-size: var(--fs-sm); margin: 0; }
+}
+
+/* A propos */
+@media (max-width: 768px) {
+  .about-image { aspect-ratio: 4 / 3; border-radius: var(--radius); }
 }
 
 /* Footer */
@@ -3835,7 +3880,7 @@ h2 { letter-spacing: -0.02em; }
   .cta-centered__actions .btn { min-height: 52px; }
 }
 
-/* FAB WhatsApp — bas gauche */
+/* FAB WhatsApp - bas gauche sur mobile */
 @media (max-width: 768px) {
   .fab-whatsapp {
     width: 50px; height: 50px;

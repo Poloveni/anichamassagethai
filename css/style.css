@@ -3906,3 +3906,369 @@ h2 { letter-spacing: -0.02em; }
     .fab-whatsapp { bottom: max(var(--space-md), env(safe-area-inset-bottom)); left: var(--space-sm); }
   }
 }
+
+
+/* ============================================================
+   26. POLISH MOBILE — TOUTES PAGES
+   ============================================================ */
+
+/* ──────────────────────────────────────────────────────────────
+   INDEX — sections sous le hero
+   ────────────────────────────────────────────────────────────── */
+
+/* Réassurance : scroll horizontal sur mobile au lieu d'empiler */
+@media (max-width: 768px) {
+  .reassurance { padding: var(--space-lg) 0; }
+  .reassurance__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .reassurance__item {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .reassurance__item:last-child { border-bottom: none; }
+  .reassurance__icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    margin-bottom: 0;
+  }
+  .reassurance__title { font-size: var(--fs-base); }
+  .reassurance__desc  { font-size: var(--fs-sm); }
+}
+
+/* Section Bienvenue : texte centré, visuel masqué */
+@media (max-width: 768px) {
+  .welcome { padding: var(--space-xl) 0; }
+  .welcome__inner { gap: var(--space-lg); }
+  .welcome h2 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    text-align: center;
+  }
+  .welcome__ornament { margin: var(--space-xs) auto; }
+  .welcome__text p { font-size: var(--fs-sm); }
+  .welcome__call {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: stretch;
+  }
+  .welcome__call .btn { width: 100%; justify-content: center; min-height: 50px; }
+}
+
+/* Google note : compact et lisible */
+@media (max-width: 768px) {
+  .google-aggregate {
+    padding: var(--space-md);
+    gap: var(--space-md);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-lg);
+  }
+  .google-aggregate__score { font-size: 2.8rem; }
+  .google-aggregate__stars { font-size: 1.2rem; }
+  .google-aggregate__label { font-size: var(--fs-xs); }
+  .google-aggregate__cta { width: 100%; }
+  .google-aggregate__cta .btn { width: 100%; min-height: 48px; }
+}
+
+/* Objectifs : grid simplifié */
+@media (max-width: 768px) {
+  .objectif-item {
+    grid-template-columns: 48px 1fr;
+    padding: var(--space-md) 0;
+    gap: var(--space-sm);
+  }
+  .objectif-item__num { font-size: 2rem; }
+  .objectif-item__icon { display: none; }
+  .objectif-item__text h3 { font-size: var(--fs-base); margin-bottom: 4px; }
+  .objectif-item__text p  { font-size: var(--fs-sm); }
+}
+
+/* Cartes soins : image plus haute, meilleur visuel */
+@media (max-width: 768px) {
+  .card__image { aspect-ratio: 16 / 9; }
+  .card__body  { padding: var(--space-md); }
+  .card__title { font-size: var(--fs-lg); }
+  .card__desc  { font-size: var(--fs-sm); }
+  .card__number {
+    font-size: 4rem;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   MASSAGES — détail de chaque soin
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* En-tête de chaque soin */
+  .massage-detail__content h2 {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+    margin-bottom: var(--space-sm);
+  }
+  .massage-detail__desc {
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+  }
+
+  /* Pills de prix : colonne lisible */
+  .massage-detail__pricing {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .pricing-pill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--fs-sm);
+  }
+
+  /* Bénéfices : plus compact */
+  .massage-detail__benefits { margin-top: var(--space-md); }
+  .massage-detail__benefits li {
+    font-size: var(--fs-sm);
+    padding: var(--space-xs) 0;
+  }
+
+  /* Contre-indications */
+  .ci-block {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+  }
+  .ci-block h3 { font-size: var(--fs-base); }
+  .ci-block ul { font-size: var(--fs-sm); }
+
+  /* Avant / Après */
+  .avantapres-grid { gap: var(--space-md); }
+  .avantapres-item {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+  }
+  .avantapres-item h3 { font-size: var(--fs-base); }
+  .avantapres-item li { font-size: var(--fs-sm); }
+
+  /* Bouton réserver soin */
+  .massage-detail__cta { margin-top: var(--space-md); }
+  .massage-detail__cta .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   À PROPOS
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Intro : texte centré */
+  .about-intro { text-align: center; }
+  .about-intro h1 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    line-height: 1.15;
+  }
+  .about-intro .lead { font-size: var(--fs-sm); }
+
+  /* Bloc portrait + texte */
+  .about-image {
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius);
+  }
+  .about-content h2 { font-size: clamp(1.5rem, 6vw, 1.9rem); }
+  .about-content p  { font-size: var(--fs-sm); }
+  .about-content blockquote {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--fs-base);
+    border-left: 2px solid var(--color-secondary);
+    margin: var(--space-md) 0;
+  }
+
+  /* Notice */
+  .about-notice {
+    font-size: var(--fs-xs);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  /* Certifications : chips en wrap */
+  .certif-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: center;
+    margin-top: var(--space-md);
+  }
+  .certif-item {
+    font-size: var(--fs-xs);
+    padding: 6px var(--space-sm);
+    border-radius: var(--radius-full);
+    text-align: center;
+    flex: 0 0 auto;
+  }
+
+  /* Timeline */
+  .timeline { margin-top: var(--space-lg); }
+  .timeline-item__content p { font-size: var(--fs-sm); }
+
+  /* Philosophie */
+  .philosophy .philosophy__content blockquote {
+    font-size: var(--fs-sm);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* CTA final */
+  .about-cta .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   AVIS & GALERIE
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Note Google en haut */
+  .google-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    border-radius: var(--radius);
+  }
+
+  /* Témoignages */
+  .testimonial {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+  }
+  .testimonial__text {
+    font-size: var(--fs-sm);
+    line-height: 1.65;
+  }
+  .testimonial__text::before { font-size: 2.5rem; }
+  .testimonial__author { font-size: var(--fs-sm); }
+  .testimonial__date   { font-size: var(--fs-xs); }
+
+  /* Galerie : 2 colonnes sur mobile */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .gallery-item:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+  .gallery-item { aspect-ratio: 1; }
+  .gallery-item img { border-radius: 0; }
+
+  /* CTA galerie */
+  .gallery-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+  .gallery-cta .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 50px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   CONTACT
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Cartes infos de contact */
+  .contact-page__info { gap: var(--space-md); }
+  .contact-info-card {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+  }
+  .contact-info-card h3 { font-size: var(--fs-base); margin-bottom: var(--space-xs); }
+  .contact-info-card p,
+  .contact-info-card a { font-size: var(--fs-sm); }
+
+  /* Horaires */
+  .horaires-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+  .horaires-row { font-size: var(--fs-sm); }
+
+  /* Carte Google Maps */
+  .contact-page__map { height: 240px; border-radius: var(--radius); overflow: hidden; }
+
+  /* Accès transport */
+  .acces-grid { gap: var(--space-md); }
+  .acces-item {
+    padding: var(--space-md);
+    border-radius: var(--radius);
+  }
+  .acces-item h3 { font-size: var(--fs-base); margin-bottom: var(--space-xs); }
+  .acces-item p  { font-size: var(--fs-sm); }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   MENTIONS LÉGALES — lecture confortable
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .legal-section { padding: var(--space-xl) 0; }
+  .legal-container { gap: var(--space-lg); }
+  .legal-body      { font-size: var(--fs-sm); line-height: 1.8; }
+  .legal-block     { padding-bottom: var(--space-lg); margin-bottom: var(--space-lg); }
+  .legal-block h2  { font-size: var(--fs-md); margin-bottom: var(--space-sm); }
+  .legal-block h3  { font-size: var(--fs-base); margin-bottom: var(--space-xs); }
+  .legal-block p,
+  .legal-block li  { font-size: var(--fs-sm); line-height: 1.75; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   GLOBAL — finitions communes à toutes les pages
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Section header uniforme */
+  .section-header h2    { font-size: clamp(1.55rem, 6vw, 2rem); }
+  .section-header .lead { font-size: var(--fs-sm); line-height: 1.65; }
+
+  /* Sections : espacement vertical réduit */
+  .section       { padding: var(--space-xl) 0; }
+  .section--alt  { padding: var(--space-xl) 0; }
+  .section--tight{ padding: var(--space-lg) 0; }
+  .section-header{ margin-bottom: var(--space-md); }
+
+  /* Container légèrement plus serré */
+  .container { padding-left: 18px; padding-right: 18px; }
+
+  /* Page hero secondaire : hauteur raisonnable */
+  .page-hero {
+    min-height: 44dvh;
+    padding-bottom: var(--space-xl);
+  }
+
+  /* Paragraphes : max-width libéré sur mobile */
+  p { max-width: 100%; }
+
+  /* Tables responsive */
+  table { font-size: var(--fs-sm); }
+}
+
+/* Très petits écrans */
+
+/* Très petits écrans */
+@media (max-width: 390px) {
+  .section-header h2 { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+  .hero h1           { font-size: clamp(1.9rem, 8.5vw, 2.5rem); }
+  .page-hero h1      { font-size: clamp(1.5rem, 8vw, 2rem); }
+  .btn               { font-size: var(--fs-xs); padding: 12px var(--space-sm); }
+}

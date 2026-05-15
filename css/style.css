@@ -4509,7 +4509,8 @@ h2 { letter-spacing: -0.02em; }
   font-family: var(--font-serif);
   font-size: 1.05rem;
   font-style: italic;
-  color: #4A4035;
+  font-weight: 700;
+  color: var(--color-primary-dark);
   margin: 0 0 var(--space-xs);
   line-height: 1.5;
   padding-left: var(--space-md);

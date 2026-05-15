@@ -866,7 +866,7 @@ p { max-width: 65ch; }
   border-color: rgba(200,146,10,.45);
   box-shadow: 0 0 0 1px rgba(200,146,10,.20);
 }
-.formule-card--featured .formule-card__name  { color: var(--color-text); }
+.formule-card--featured .formule-card__name  { color: var(--color-primary); }
 .formule-card--featured .formule-card__list  { color: var(--color-muted); }
 .formule-card--featured .formule-card__price { color: var(--color-primary); }
 
@@ -874,7 +874,7 @@ p { max-width: 65ch; }
   font-family: var(--font-serif);
   font-size: var(--fs-lg);
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--color-primary);
   letter-spacing: 0.02em;
 }
 .formule-card__duration {
@@ -1704,7 +1704,7 @@ div.philosophy {
   font-size: 1.7rem;
   font-style: italic;
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--color-primary);
   line-height: 1.1;
   margin: 0;
   letter-spacing: -0.005em;
@@ -4518,7 +4518,7 @@ h2 { letter-spacing: -0.02em; }
   text-wrap: balance;
 }
 .formule-card > .formule-card__name {
-  padding-top: var(--space-xs);
+  padding-top: var(--space-md);
   font-size: 2.4rem;
 }
 

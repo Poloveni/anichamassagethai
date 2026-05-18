@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://anichamassagethai-nimes.com/sitemap.xml
+Sitemap: https://anichamassagethai.com/sitemap.xml

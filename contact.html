@@ -212,14 +212,14 @@
             Anicha vous répond sous 24 heures. Pour un rendez-vous urgent, appelez le <a href="tel:+33650672080">06 50 67 20 80</a>.
           </div>
 
-          <form action="https://formsubmit.co/anichamassagethai@gmail.com" method="POST" novalidate>
-            <!-- FormSubmit : configuration -->
-            <input type="hidden" name="_subject" value="Nouvelle demande depuis le site Anicha">
-            <input type="hidden" name="_captcha" value="true">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://anichamassagethai.com/contact.html?envoye=1">
-            <!-- Honeypot anti-spam (champ caché que les bots remplissent) -->
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms : configuration (cette clé est publique par conception, elle peut rester dans le code) -->
+            <input type="hidden" name="access_key" value="efa08dc5-00ec-49b9-b38c-f85f3ae3a788">
+            <input type="hidden" name="subject" value="Nouvelle demande depuis le site Anicha">
+            <input type="hidden" name="from_name" value="Site Anicha">
+            <input type="hidden" name="redirect" value="https://anichamassagethai.com/contact.html?envoye=1">
+            <!-- Anti-spam : case cachée que seuls les robots cochent -->
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <div class="form-grid">
               <div class="form-group">

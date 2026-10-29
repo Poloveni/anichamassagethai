@@ -230,7 +230,7 @@
 
   /* ─────────────────────────────────────────────────
    * 8. FORMULAIRE — message de confirmation
-   *    Affiché si l'URL contient ?envoye=1 (FormSubmit
+   *    Affiché si l'URL contient ?envoye=1 (Web3Forms
    *    redirige ici après soumission réussie).
    * ───────────────────────────────────────────────── */
   if (new URLSearchParams(window.location.search).get('envoye') === '1') {
